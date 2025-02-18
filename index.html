@@ -1,299 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jaxx: The Unkillable Meme Coin</title>
-  <meta name="description" content="Jaxx – The ultimate meme coin inspired by the resilience of the cockroach. Built on Solana, unkillable by design.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Jaxx: The Unkillable Meme Coin">
-  <meta property="og:description" content="A meme coin built to thrive, not just survive. Join the unkillable revolution on Solana.">
-  <meta property="og:image" content="images/jaxx-logo.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://jaxxcoin.com">
-  <meta property="og:type" content="website">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jaxx: The Unkillable Meme Coin">
-  <meta name="twitter:description" content="A meme coin built to thrive, not just survive. Join the unkillable revolution on Solana.">
-  <meta name="twitter:image" content="https://jaxxcoin.com/assets/img/logo/jaxx-logo.png">
-  <meta name="twitter:url" content="https://jaxxcoin.com">
-  <link rel="shortcut icon" type="image/x-icon" href="images/jaxx-favicon.png">
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="css/HBkmipJKp4HJ.css">
-  <link rel="stylesheet" href="css/nfxpGvGYPtIH.css">
-  <link rel="stylesheet" href="css/TljrnR0QUkCv.css">
-  <link rel="stylesheet" href="css/ByTDTJfRoNGC.css">
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+    }
+
+    a {
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Glassmorphism Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    /* Header Section */
+    #header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url('header-bg.jpg') no-repeat center center/cover;
+      color: #fff;
+    }
+
+    #header h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+
+    #header p {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    #header .cta-buttons {
+      margin-top: 20px;
+    }
+
+    #header .cta-buttons a {
+      background: #00ff88;
+      color: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    /* About Section */
+    #about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    #about img {
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    /* Mascot Section */
+    #mascot {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #mascot .carousel {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    #mascot .carousel img {
+      max-width: 200px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    #mascot .carousel img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Tokenomics Section */
+    #tokenomics {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #tokenomics .pie-chart {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* Roadmap Section */
+    #roadmap {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    #roadmap .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #roadmap .timeline .phase {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    /* Community Section */
+    #community {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #community .meme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #community .meme-grid img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Footer Section */
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer .social-icons {
+      margin-bottom: 10px;
+    }
+
+    footer .social-icons a {
+      margin: 0 10px;
+    }
+  </style>
 </head>
-
 <body>
-  <!--[if lte IE 9]>
-    <p class="browserupgrade">
-      You are using an <strong>outdated</strong> browser. Please
-      <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
-    </p>
-  <![endif]-->
-
-  <!-- Header -->
-  <header class="header">
-    <div class="navbar-area">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand" href="index.html">
-            <img src="images/jaxx-logo.gif" alt="Jaxx Logo" style="height: 50px; margin-right: 10px;">
-          </a>
-          <a class="navbar-brand" href="index.html">
-            <img src="images/jaxx-text-logo.png" alt="Jaxx Text Logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-            <ul id="nav" class="navbar-nav nav-center">
-              <li class="nav-item">
-                <a href="#home" class="page-scroll active">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="#about" class="page-scroll">About Jaxx</a>
-              </li>
-              <li class="nav-item">
-                <a href="#tokenomics" class="page-scroll">Tokenomics</a>
-              </li>
-              <li class="nav-item">
-                <a href="#buy-now" class="page-scroll">Join the Revolution</a>
-              </li>
-            </ul>
-            <ul id="nav" class="navbar-nav ms-auto nav-socials">
-              <li class="nav-item">
-                <a href="https://t.me/jaxxportal" target="_blank" class="btn-nav">
-                  <img src="images/telegram-icon.png" alt="Telegram">
-                </a>
-                <a href="https://x.com/JaxxCoin" target="_blank" class="btn-nav">
-                  <img src="images/x-icon.png" alt="X">
-                </a>
-              </li>
-            </ul>
-          </div>          
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-area">
-    <div class="container">
-      <div class="hero-container">
-        <div class="row gy-3 align-items-center">
-          <div class="col-lg-6">
-            <div class="banner-txt">
-              <span>The Unkillable Meme Coin</span>
-              <h1>
-                Welcome to Jaxx: The Cockroach Pepe-Style Meme Coin on Solana
-              </h1>
-              <p>
-                Built to thrive, not just survive. Jaxx is more than a meme coin—it’s a symbol of resilience, adaptability, and community. Join the unkillable revolution today.
-              </p>
-              <a href="https://pump.fun/jaxx" target="_blank" class="btn-main">Buy Now</a>
-              <a href="https://dexscreener.com/solana/jaxx" target="_blank" class="btn-main btn-border">Live Chart</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="img-center text-center">
-              <img src="images/jaxx-mascot.png" class="img-fluid" alt="Jaxx Mascot">
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Header Section -->
+  <section id="header">
+    <h1>Jaxx: The Unkillable Meme Coin</h1>
+    <p>Resilience. Adaptability. Community. Built on Solana.</p>
+    <div class="cta-buttons">
+      <a href="https://t.me/jaxxcoin" target="_blank">Join the Revolution</a>
+      <a href="https://pump.fun/jaxx" target="_blank">Buy $JAXX</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="why">
-    <div class="container">
-      <div class="row justify-content-between gx-0 gy-4 align-items-center">
-        <div class="col-lg-6">
-          <div class="abt-txt">
-            <h2>
-              The Legend of Jaxx <br> The Unkillable Cockroach
-            </h2>
-            <p class="mb-3">
-              Inspired by the ultimate survivor—the cockroach—Jaxx is a meme coin built to last. In a world of fleeting hype, Jaxx stands strong, embodying resilience and adaptability.
-            </p>
-            <p class="mb-3">
-              Jaxx is more than just a token. It’s a movement. A community. A symbol of unkillable spirit in the crypto world.
-            </p>
-            <p>
-              Join us and become part of something truly unkillable.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <img src="images/jaxx-mascot-2.png" class="img-fluid position-relative shadow-sm" style="border-radius: 20px;" alt="Jaxx Mascot">
-        </div>
-      </div>
+  <section id="about">
+    <img src="about-jaxx.jpg" alt="Jaxx Mascot">
+    <div class="glass">
+      <h2>What is Jaxx?</h2>
+      <p>Jaxx is the ultimate meme coin, inspired by the unkillable spirit of the cockroach. Built on Solana, Jaxx is fast, efficient, and here to stay.</p>
+      <a href="#mascot">Meet Jaxx</a>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-txt text-center">
-        <h2>
-          The Unkillable Revolution: Join Jaxx Today!
-        </h2>
-        <p style="margin-bottom: 25px;">
-          Jaxx is more than a meme coin. It’s a statement of resilience, adaptability, and community. Don’t wait—join the unkillable revolution now.
-        </p>
-        <a href="buy.html" target="_blank" class="btn-main">Buy Now</a>
-        <div class="img-container" style="margin-top: 30px;">
-          <img src="images/jaxx-community.jpg" class="img-radius" alt="Jaxx Community" style="max-width: 100%; height: auto;">
-        </div>
-      </div>
+  <!-- Mascot Section -->
+  <section id="mascot">
+    <h2>The Coolest Cockroach in Crypto</h2>
+    <div class="carousel">
+      <img src="jaxx-logo.png" alt="Jaxx Logo">
+      <img src="jaxx-meme1.gif" alt="Jaxx Meme 1">
+      <img src="jaxx-meme2.gif" alt="Jaxx Meme 2">
     </div>
   </section>
 
   <!-- Tokenomics Section -->
-  <section id="tokenomics" class="tokenomics">
-    <div class="container">
-      <h2 class="tokenomics-title text-center" data-aos="fade-up" data-aos-duration="500">
-        Tokenomics
-      </h2>
-      <div class="row gy-4">
-        <!-- Card 1 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700">
-          <div class="token-card">
-            <h4>Supply</h4>
-            <p>
-              1 Billion Jaxx<br>
-              <em>Plenty for the unkillable community.</em>
-            </p>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="900">
-          <div class="token-card">
-            <h4>Taxes</h4>
-            <p>
-              0%<br>
-              <em>No friction, just resilience.</em>
-            </p>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1100">
-          <div class="token-card">
-            <h4>Liquidity</h4>
-            <p>
-              Locked FOREVER<br>
-              <em>Unkillable by design.</em>
-            </p>
-          </div>
-        </div>
+  <section id="tokenomics">
+    <h2>Tokenomics: Built to Last</h2>
+    <img src="tokenomics-pie.png" alt="Tokenomics Pie Chart" class="pie-chart">
+    <p>1 Billion $JAXX tokens on Solana. No minting, no owner, no fees—fully renounced and decentralized.</p>
+    <a href="https://pump.fun/jaxx" target="_blank">Buy $JAXX</a>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap">
+    <h2>The Jaxx Roadmap</h2>
+    <div class="timeline">
+      <div class="phase glass">
+        <h3>Phase 1: Community Launch & Meme Ignition</h3>
+        <p>Fair token launch, meme contests, social media blitz.</p>
+      </div>
+      <div class="phase glass">
+        <h3>Phase 2: Utility & Engagement</h3>
+        <p>Staking launch, "Roach Motel" community platforms, DeFi explorations.</p>
+      </div>
+      <div class="phase glass">
+        <h3>Phase 3: Resilience & Expansion</h3>
+        <p>Decentralized governance, partnerships, ecosystem growth.</p>
       </div>
     </div>
   </section>
 
-  <!-- How to Buy Section -->
-  <section id="buy-now" class="how-buy">
-    <div class="container">
-      <div class="sec-t" data-aos="fade-up" data-aos-duration="500">
-        <h2>How to Buy</h2>
-      </div>
-      <div class="row gy-4 justify-content-center">
-        <div class="col-lg-3 col-md-6">
-          <div class="buy-single" data-aos="fade-up" data-aos-duration="1500">
-            <h5>Buy Now</h5>
-            <a href="https://pump.fun/jaxx" target="_blank" class="btn-main">Buy Now</a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="buy-single" data-aos="fade-up" data-aos-duration="1700">
-            <h5>Live Chart</h5>
-            <a href="https://dexscreener.com/solana/jaxx" target="_blank" class="btn-main btn-border">Live Chart</a>
-          </div>
-        </div>
-      </div>
-      <div class="contract-adress">
-        <div class="firt">
-          <span>CONTRACT ADDRESS</span>
-          <p>
-            JaxxContractAddressHere
-          </p>
-        </div>
-        <div class="btn-cun">
-          <button onclick="copy('JaxxContractAddressHere','#copy_button_2')" id="copy_button_2" class="copy-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!">
-            <img src="images/copy-icon.png" alt="copy">
-          </button>
-        </div>
-      </div>
+  <!-- Community Section -->
+  <section id="community">
+    <h2>Welcome to the Roach Motel</h2>
+    <div class="meme-grid">
+      <img src="meme1.jpg" alt="Community Meme 1">
+      <img src="meme2.jpg" alt="Community Meme 2">
+      <img src="meme3.jpg" alt="Community Meme 3">
     </div>
+    <a href="https://t.me/jaxxcoin" target="_blank">Join Telegram</a>
   </section>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="row gy-4 justify-content-between">
-        <div class="col-lg-4">
-          <div class="footer-l">
-            <img src="images/jaxx-logo.gif" class="footer-logo" alt="Jaxx Logo" style="height: 50px; margin-right: 10px;">
-            <img src="images/jaxx-text-logo.png" class="footer-logo" alt="Jaxx Text Logo">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="footer-list">
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Jaxx</a></li>
-              <li><a href="#tokenomics">Tokenomics</a></li>
-              <li><a href="#buy-now">Join the Revolution</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-social">
-        <a href="https://t.me/jaxxportal" target="_blank" class="btn-nav">
-          <img src="images/telegram-icon.png" alt="Telegram">
-        </a>
-        <a href="https://x.com/JaxxCoin" target="_blank" class="btn-nav">
-          <img src="images/x-icon.png" alt="X">
-        </a>
-      </div>
+  <!-- Footer Section -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://twitter.com/jaxxcoin" target="_blank">Twitter</a>
+      <a href="https://t.me/jaxxcoin" target="_blank">Telegram</a>
+      <a href="https://discord.gg/jaxxcoin" target="_blank">Discord</a>
     </div>
+    <p>© 2025 Jaxx. All rights reserved.</p>
   </footer>
-
-  <!-- JS Files -->
-  <script src="js/7BI5EX7rFGmL.js"></script>
-  <script src="js/vWpMhah5Y9nt.js"></script>
-  <script src="js/vIe4r5hkYmDs.js"></script>
-  <script src="js/fHVPNzUSjl7B.js"></script>
-  <script>
-    AOS.init();
-  </script>
-  <script>
-    // Initialize Bootstrap tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'manual' });
-    });
-
-    function copy(text, target) {
-      var button = document.querySelector(target);
-      var input = document.createElement('input');
-      input.setAttribute('value', text);
-      document.body.appendChild(input);
-      input.select();
-      var result = document.execCommand('copy');
-      document.body.removeChild(input);
-      var tooltip = bootstrap.Tooltip.getInstance(button);
-      tooltip.show();
-      setTimeout(function () { tooltip.hide(); }, 800);
-      return result;
-    }
-  </script>
 </body>
 </html>
