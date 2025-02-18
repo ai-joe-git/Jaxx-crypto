@@ -1,334 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bot Control Panel</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Jaxx: The Unkillable Meme Coin</title>
+  <meta name="description" content="Jaxx – The ultimate meme coin inspired by the resilience of the cockroach. Built on Solana, unkillable by design.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Jaxx: The Unkillable Meme Coin">
+  <meta property="og:description" content="A meme coin built to thrive, not just survive. Join the unkillable revolution on Solana.">
+  <meta property="og:image" content="images/jaxx-logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://jaxxcoin.com">
+  <meta property="og:type" content="website">
 
-    body {
-      font-family: 'Arial', sans-serif;
-      color: #fff;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Glassmorphism Container */
-    .glass-container {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem;
-      width: 90%;
-      max-width: 1000px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    /* Token Customization Section */
-    .token-customization {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .token-customization input,
-    .token-customization textarea {
-      flex: 1;
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    .token-customization input::placeholder,
-    .token-customization textarea::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* Buttons */
-    .btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      margin: 0.5rem;
-    }
-
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.05);
-    }
-
-    /* Progress Bars */
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 1rem 0;
-    }
-
-    .progress-bar div {
-      height: 100%;
-      background: #23d5ab;
-      width: 0;
-      transition: width 0.5s ease;
-    }
-
-    /* Log Output */
-    .log-output {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-top: 2rem;
-      max-height: 200px;
-      overflow-y: auto;
-      text-align: left;
-      font-family: monospace;
-    }
-
-    .log-output p {
-      margin: 0.5rem 0;
-      font-size: 0.9rem;
-    }
-
-    /* Chart Container */
-    .chart-container {
-      margin-top: 2rem;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      padding: 1rem;
-      height: 300px; /* Fixed height to prevent layout shifts */
-    }
-
-    /* Prevent Layout Shifts */
-    canvas {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-    }
-  </style>
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jaxx: The Unkillable Meme Coin">
+  <meta name="twitter:description" content="A meme coin built to thrive, not just survive. Join the unkillable revolution on Solana.">
+  <meta name="twitter:image" content="https://jaxxcoin.com/assets/img/logo/jaxx-logo.png">
+  <meta name="twitter:url" content="https://jaxxcoin.com">
+  <link rel="shortcut icon" type="image/x-icon" href="images/jaxx-favicon.png">
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/HBkmipJKp4HJ.css">
+  <link rel="stylesheet" href="css/nfxpGvGYPtIH.css">
+  <link rel="stylesheet" href="css/TljrnR0QUkCv.css">
+  <link rel="stylesheet" href="css/ByTDTJfRoNGC.css">
 </head>
+
 <body>
-  <div class="glass-container">
-    <h1>Bot Control Panel</h1>
-    <p>Manage your Solana bot with ease.</p>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">
+      You are using an <strong>outdated</strong> browser. Please
+      <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </p>
+  <![endif]-->
 
-    <!-- Token Customization -->
-    <div class="token-customization">
-      <input type="text" id="tokenName" placeholder="Token Name">
-      <input type="text" id="websiteLink" placeholder="Website Link">
-      <input type="text" id="twitterAccount" placeholder="Twitter Account">
-      <input type="file" id="tokenImage" accept="image/*" style="display: none;">
-      <button class="btn" onclick="document.getElementById('tokenImage').click()">Upload Token Image</button>
+  <!-- Header -->
+  <header class="header">
+    <div class="navbar-area">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/jaxx-logo.gif" alt="Jaxx Logo" style="height: 50px; margin-right: 10px;">
+          </a>
+          <a class="navbar-brand" href="index.html">
+            <img src="images/jaxx-text-logo.png" alt="Jaxx Text Logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-icon"></span>
+            <span class="toggler-icon"></span>
+            <span class="toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+            <ul id="nav" class="navbar-nav nav-center">
+              <li class="nav-item">
+                <a href="#home" class="page-scroll active">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#about" class="page-scroll">About Jaxx</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tokenomics" class="page-scroll">Tokenomics</a>
+              </li>
+              <li class="nav-item">
+                <a href="#buy-now" class="page-scroll">Join the Revolution</a>
+              </li>
+            </ul>
+            <ul id="nav" class="navbar-nav ms-auto nav-socials">
+              <li class="nav-item">
+                <a href="https://t.me/jaxxportal" target="_blank" class="btn-nav">
+                  <img src="images/telegram-icon.png" alt="Telegram">
+                </a>
+                <a href="https://x.com/JaxxCoin" target="_blank" class="btn-nav">
+                  <img src="images/x-icon.png" alt="X">
+                </a>
+              </li>
+            </ul>
+          </div>          
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <!-- Buttons for Bot Actions -->
-    <button class="btn" id="generateWallets">Generate Wallets</button>
-    <button class="btn" id="fundWallets">Fund Wallets</button>
-    <button class="btn" id="createToken">Create Token</button>
-    <button class="btn" id="startSwapping">Start Swapping</button>
-    <button class="btn" id="stopSwapping">Stop Swapping</button>
-    <button class="btn" id="sellTokens">Sell Tokens</button>
-    <button class="btn" id="returnSol">Return SOL to Main Wallet</button>
+  <!-- Hero Section -->
+  <section id="home" class="hero-area">
+    <div class="container">
+      <div class="hero-container">
+        <div class="row gy-3 align-items-center">
+          <div class="col-lg-6">
+            <div class="banner-txt">
+              <span>The Unkillable Meme Coin</span>
+              <h1>
+                Welcome to Jaxx: The Cockroach Pepe-Style Meme Coin on Solana
+              </h1>
+              <p>
+                Built to thrive, not just survive. Jaxx is more than a meme coin—it’s a symbol of resilience, adaptability, and community. Join the unkillable revolution today.
+              </p>
+              <a href="https://pump.fun/jaxx" target="_blank" class="btn-main">Buy Now</a>
+              <a href="https://dexscreener.com/solana/jaxx" target="_blank" class="btn-main btn-border">Live Chart</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="img-center text-center">
+              <img src="images/jaxx-mascot.png" class="img-fluid" alt="Jaxx Mascot">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Progress Bars -->
-    <div class="progress-bar">
-      <div id="progressGenerateWallets"></div>
+  <!-- About Section -->
+  <section id="about" class="why">
+    <div class="container">
+      <div class="row justify-content-between gx-0 gy-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="abt-txt">
+            <h2>
+              The Legend of Jaxx <br> The Unkillable Cockroach
+            </h2>
+            <p class="mb-3">
+              Inspired by the ultimate survivor—the cockroach—Jaxx is a meme coin built to last. In a world of fleeting hype, Jaxx stands strong, embodying resilience and adaptability.
+            </p>
+            <p class="mb-3">
+              Jaxx is more than just a token. It’s a movement. A community. A symbol of unkillable spirit in the crypto world.
+            </p>
+            <p>
+              Join us and become part of something truly unkillable.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <img src="images/jaxx-mascot-2.png" class="img-fluid position-relative shadow-sm" style="border-radius: 20px;" alt="Jaxx Mascot">
+        </div>
+      </div>
     </div>
-    <div class="progress-bar">
-      <div id="progressFundWallets"></div>
-    </div>
-    <div class="progress-bar">
-      <div id="progressCreateToken"></div>
-    </div>
+  </section>
 
-    <!-- Log Output -->
-    <div class="log-output" id="logOutput">
-      <p>Logs will appear here...</p>
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-txt text-center">
+        <h2>
+          The Unkillable Revolution: Join Jaxx Today!
+        </h2>
+        <p style="margin-bottom: 25px;">
+          Jaxx is more than a meme coin. It’s a statement of resilience, adaptability, and community. Don’t wait—join the unkillable revolution now.
+        </p>
+        <a href="buy.html" target="_blank" class="btn-main">Buy Now</a>
+        <div class="img-container" style="margin-top: 30px;">
+          <img src="images/jaxx-community.jpg" class="img-radius" alt="Jaxx Community" style="max-width: 100%; height: auto;">
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Chart -->
-    <div class="chart-container">
-      <canvas id="tokenChart"></canvas>
+  <!-- Tokenomics Section -->
+  <section id="tokenomics" class="tokenomics">
+    <div class="container">
+      <h2 class="tokenomics-title text-center" data-aos="fade-up" data-aos-duration="500">
+        Tokenomics
+      </h2>
+      <div class="row gy-4">
+        <!-- Card 1 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700">
+          <div class="token-card">
+            <h4>Supply</h4>
+            <p>
+              1 Billion Jaxx<br>
+              <em>Plenty for the unkillable community.</em>
+            </p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="900">
+          <div class="token-card">
+            <h4>Taxes</h4>
+            <p>
+              0%<br>
+              <em>No friction, just resilience.</em>
+            </p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1100">
+          <div class="token-card">
+            <h4>Liquidity</h4>
+            <p>
+              Locked FOREVER<br>
+              <em>Unkillable by design.</em>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
+  <!-- How to Buy Section -->
+  <section id="buy-now" class="how-buy">
+    <div class="container">
+      <div class="sec-t" data-aos="fade-up" data-aos-duration="500">
+        <h2>How to Buy</h2>
+      </div>
+      <div class="row gy-4 justify-content-center">
+        <div class="col-lg-3 col-md-6">
+          <div class="buy-single" data-aos="fade-up" data-aos-duration="1500">
+            <h5>Buy Now</h5>
+            <a href="https://pump.fun/jaxx" target="_blank" class="btn-main">Buy Now</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="buy-single" data-aos="fade-up" data-aos-duration="1700">
+            <h5>Live Chart</h5>
+            <a href="https://dexscreener.com/solana/jaxx" target="_blank" class="btn-main btn-border">Live Chart</a>
+          </div>
+        </div>
+      </div>
+      <div class="contract-adress">
+        <div class="firt">
+          <span>CONTRACT ADDRESS</span>
+          <p>
+            JaxxContractAddressHere
+          </p>
+        </div>
+        <div class="btn-cun">
+          <button onclick="copy('JaxxContractAddressHere','#copy_button_2')" id="copy_button_2" class="copy-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!">
+            <img src="images/copy-icon.png" alt="copy">
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row gy-4 justify-content-between">
+        <div class="col-lg-4">
+          <div class="footer-l">
+            <img src="images/jaxx-logo.gif" class="footer-logo" alt="Jaxx Logo" style="height: 50px; margin-right: 10px;">
+            <img src="images/jaxx-text-logo.png" class="footer-logo" alt="Jaxx Text Logo">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-list">
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Jaxx</a></li>
+              <li><a href="#tokenomics">Tokenomics</a></li>
+              <li><a href="#buy-now">Join the Revolution</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-social">
+        <a href="https://t.me/jaxxportal" target="_blank" class="btn-nav">
+          <img src="images/telegram-icon.png" alt="Telegram">
+        </a>
+        <a href="https://x.com/JaxxCoin" target="_blank" class="btn-nav">
+          <img src="images/x-icon.png" alt="X">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Files -->
+  <script src="js/7BI5EX7rFGmL.js"></script>
+  <script src="js/vWpMhah5Y9nt.js"></script>
+  <script src="js/vIe4r5hkYmDs.js"></script>
+  <script src="js/fHVPNzUSjl7B.js"></script>
   <script>
-    // Log Function to Display Messages
-    const logOutput = document.getElementById('logOutput');
-    function log(message) {
-      const logEntry = document.createElement('p');
-      logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-      logOutput.appendChild(logEntry);
-      logOutput.scrollTop = logOutput.scrollHeight; // Auto-scroll to bottom
+    AOS.init();
+  </script>
+  <script>
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'manual' });
+    });
+
+    function copy(text, target) {
+      var button = document.querySelector(target);
+      var input = document.createElement('input');
+      input.setAttribute('value', text);
+      document.body.appendChild(input);
+      input.select();
+      var result = document.execCommand('copy');
+      document.body.removeChild(input);
+      var tooltip = bootstrap.Tooltip.getInstance(button);
+      tooltip.show();
+      setTimeout(function () { tooltip.hide(); }, 800);
+      return result;
     }
-
-    // Progress Bars
-    const progressBars = {
-      generateWallets: document.getElementById('progressGenerateWallets'),
-      fundWallets: document.getElementById('progressFundWallets'),
-      createToken: document.getElementById('progressCreateToken'),
-    };
-
-    function updateProgressBar(bar, progress) {
-      bar.style.width = `${progress}%`;
-    }
-
-    // Chart Initialization
-    const ctx = document.getElementById('tokenChart').getContext('2d');
-    const tokenChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [{
-          label: 'Token Price',
-          data: [],
-          borderColor: '#23d5ab',
-          tension: 0.1,
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false, // Prevent chart from resizing
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-
-    // Simulation Variables
-    let tokenPrice = 0;
-    let totalSpent = 0; // Total SOL spent during swapping
-    let totalReturned = 0; // Total SOL returned after selling tokens
-    let swapInterval;
-
-    // Simulate Wallet Generation
-    document.getElementById('generateWallets').addEventListener('click', async () => {
-      log('Generating 200 wallets...');
-      for (let i = 0; i <= 100; i += 5) {
-        updateProgressBar(progressBars.generateWallets, i);
-        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
-      }
-      log('Wallets generated successfully!');
-    });
-
-    // Simulate Funding Wallets
-    document.getElementById('fundWallets').addEventListener('click', async () => {
-      log('Funding wallets with 0.05 SOL each...');
-      for (let i = 0; i <= 100; i += 5) {
-        updateProgressBar(progressBars.fundWallets, i);
-        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
-      }
-      log('Wallets funded successfully!');
-    });
-
-    // Simulate Token Creation
-    document.getElementById('createToken').addEventListener('click', async () => {
-      const tokenName = document.getElementById('tokenName').value;
-      log(`Creating token "${tokenName}" on pump.fun...`);
-      for (let i = 0; i <= 100; i += 5) {
-        updateProgressBar(progressBars.createToken, i);
-        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
-      }
-      log('Token created successfully!');
-      tokenPrice = 0; // Reset price to zero
-      totalSpent = 0; // Reset total spent
-      totalReturned = 0; // Reset total returned
-      tokenChart.data.labels = [];
-      tokenChart.data.datasets[0].data = [];
-      tokenChart.update();
-    });
-
-    // Simulate Swapping (4x Faster)
-    document.getElementById('startSwapping').addEventListener('click', () => {
-      log('Starting random swaps...');
-      swapInterval = setInterval(() => {
-        const swapAmount = Math.random() * 0.05; // Random swap amount between 0 and 0.05
-        tokenPrice += swapAmount; // Increase price based on swap amount
-        totalSpent += swapAmount; // Track total SOL spent
-        tokenChart.data.labels.push(new Date().toLocaleTimeString());
-        tokenChart.data.datasets[0].data.push(tokenPrice);
-        if (tokenChart.data.labels.length > 20) {
-          tokenChart.data.labels.shift();
-          tokenChart.data.datasets[0].data.shift();
-        }
-        tokenChart.update();
-        log(`Swap executed: +${swapAmount.toFixed(4)} SOL`);
-      }, 500); // 4x faster (every 500ms)
-    });
-
-    // Stop Swapping
-    document.getElementById('stopSwapping').addEventListener('click', () => {
-      log('Stopping swaps...');
-      clearInterval(swapInterval);
-      log(`Total SOL spent during swapping: ${totalSpent.toFixed(2)} SOL`);
-    });
-
-    // Simulate Selling Tokens (Big Dump)
-    document.getElementById('sellTokens').addEventListener('click', () => {
-      log('Selling all tokens...');
-      tokenPrice = 0; // Price drops to zero
-      totalReturned = totalSpent + (Math.random() * (512 - 180) + 180; // Random profit between 180 and 512 SOL
-      tokenChart.data.labels.push(new Date().toLocaleTimeString());
-      tokenChart.data.datasets[0].data.push(tokenPrice);
-      if (tokenChart.data.labels.length > 20) {
-        tokenChart.data.labels.shift();
-        tokenChart.data.datasets[0].data.shift();
-      }
-      tokenChart.update();
-      log(`Tokens sold successfully! Total SOL returned: ${totalReturned.toFixed(2)} SOL`);
-    });
-
-    // Simulate Returning SOL and Calculate Profit
-    document.getElementById('returnSol').addEventListener('click', () => {
-      const profit = totalReturned - totalSpent;
-      log(`Returning ${totalReturned.toFixed(2)} SOL to main wallet...`);
-      log(`Total profit: ${profit.toFixed(2)} SOL`);
-      log('SOL returned successfully!');
-    });
   </script>
 </body>
 </html>
