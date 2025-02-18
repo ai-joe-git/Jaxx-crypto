@@ -1,352 +1,334 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Rick the Medallion</title>
-  <meta name="description" content="$MEDALLION – The ultimate flex in crypto. Become Rick now!">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Rick The $MEDALLION - The Ultimate Flex">
-  <meta property="og:description" content="More than a token, it’s a statement. Own it. Flex it. Be unstoppable.">
-  <meta property="og:image" content="images/AJ1JHVf44uUQ.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://medallion.gold">
-  <meta property="og:type" content="website">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Control Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rick The $MEDALLION - The Ultimate Flex">
-  <meta name="twitter:description" content="More than a token, it’s a statement. Own it. Flex it. Be unstoppable.">
-  <meta name="twitter:image" content="https://medallion.gold/assets/img/logo/head.png">
-  <meta name="twitter:url" content="https://medallion.gold">
-  <link rel="shortcut icon" type="image/x-icon" href="images/H57LsiZhU0Lm.png">
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="css/HBkmipJKp4HJ.css">
-  <link rel="stylesheet" href="css/nfxpGvGYPtIH.css">
-  <link rel="stylesheet" href="css/TljrnR0QUkCv.css">
-  <link rel="stylesheet" href="css/ByTDTJfRoNGC.css">
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism Container */
+    .glass-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2rem;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Token Customization Section */
+    .token-customization {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .token-customization input,
+    .token-customization textarea {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .token-customization input::placeholder,
+    .token-customization textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Buttons */
+    .btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin: 0.5rem;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* Progress Bars */
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-bar div {
+      height: 100%;
+      background: #23d5ab;
+      width: 0;
+      transition: width 0.5s ease;
+    }
+
+    /* Log Output */
+    .log-output {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 2rem;
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+      font-family: monospace;
+    }
+
+    .log-output p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    /* Chart Container */
+    .chart-container {
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 1rem;
+      height: 300px; /* Fixed height to prevent layout shifts */
+    }
+
+    /* Prevent Layout Shifts */
+    canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
 </head>
-
 <body>
-  <!--[if lte IE 9]>
-    <p class="browserupgrade">
-      You are using an <strong>outdated</strong> browser. Please
-      <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
-    </p>
-  <![endif]-->
+  <div class="glass-container">
+    <h1>Bot Control Panel</h1>
+    <p>Manage your Solana bot with ease.</p>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="navbar-area">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand" href="index.html">
-            <img src="images/iUiDDu7PiiL5.gif" alt="Spinning Medallion" style="height: 50px; margin-right: 10px;">
-          </a>
-          <a class="navbar-brand" href="index.html">
-            <img src="images/YhMA4PPauEH8.png" alt="Rick the Medallion Logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-            <span class="toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-            <ul id="nav" class="navbar-nav nav-center">
-              <li class="nav-item">
-                <a href="#home" class="page-scroll active">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="#about" class="page-scroll">About Rick</a>
-              </li>
-              <li class="nav-item">
-                <!-- Ensure we have the same classes -->
-                <a href="#tokenomics" class="page-scroll">Tokenomics</a>
-              </li>
-              <li class="nav-item">
-                <a href="#buy-now" class="page-scroll">Become Rick</a>
-              </li>
-            </ul>
-            <ul id="nav" class="navbar-nav ms-auto nav-socials">
-              <li class="nav-item">
-                <a href="https://t.me/medallionportal" target="_blank" class="btn-nav">
-                  <img src="images/WbmCQEfVZ5WE.png" alt="Telegram">
-                </a>
-                <a href="https://x.com/Medalliononx" target="_blank" class="btn-nav">
-                  <img src="images/t8ZYDoRgXa7F.png" alt="X">
-                </a>
-              </li>
-            </ul>
-          </div>          
-        </nav>
-      </div>
+    <!-- Token Customization -->
+    <div class="token-customization">
+      <input type="text" id="tokenName" placeholder="Token Name">
+      <input type="text" id="websiteLink" placeholder="Website Link">
+      <input type="text" id="twitterAccount" placeholder="Twitter Account">
+      <input type="file" id="tokenImage" accept="image/*" style="display: none;">
+      <button class="btn" onclick="document.getElementById('tokenImage').click()">Upload Token Image</button>
     </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero-area">
-    <div class="container">
-      <div class="hero-container">
-        <div class="row gy-3 align-items-center">
-          <div class="col-lg-6">
-            <div class="banner-txt">
-              <span>The Ultimate Flex in Crypto</span>
-              <h1>
-                Welcome to Rick The $MEDALLION – Wear the Wealth.
-              </h1>
-              <p>
-                More than a token, it’s a statement. Dripping in gold, built for legends. Own it. Flex it. Be unstoppable.  
-              </p>
-              <a href="https://pump.fun/coin/UdnKT39jzFvUwt8PgwBZXoG2WfTEFkx1zzkd4dtboss?coins_sort=market_cap" target="_blank" class="btn-main">Buy Now</a>
-              <a href="https://dexscreener.com/solana/4jzn8ud6a32ttttnw8gw8heyth3tuxd7lya5eyzwb7go" target="_blank" class="btn-main btn-border">Live Chart</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="img-center text-center">
-              <img src="images/WXrkSIim12ZB.png" class="img-fluid" alt="Rick the Medallion">
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Buttons for Bot Actions -->
+    <button class="btn" id="generateWallets">Generate Wallets</button>
+    <button class="btn" id="fundWallets">Fund Wallets</button>
+    <button class="btn" id="createToken">Create Token</button>
+    <button class="btn" id="startSwapping">Start Swapping</button>
+    <button class="btn" id="stopSwapping">Stop Swapping</button>
+    <button class="btn" id="sellTokens">Sell Tokens</button>
+    <button class="btn" id="returnSol">Return SOL to Main Wallet</button>
+
+    <!-- Progress Bars -->
+    <div class="progress-bar">
+      <div id="progressGenerateWallets"></div>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="why">
-    <div class="container">
-      <div class="row justify-content-between gx-0 gy-4 align-items-center">
-        <div class="col-lg-6">
-          <div class="abt-txt">
-            <h2>
-              The Legend of Rick <br> $MEDALLION
-            </h2>
-            <p class="mb-3">
-              Born from a meme and destined for greatness—Rick the Medallion symbolizes luxury, power, and the unstoppable
-              force of crypto. 
-            </p>
-            <p class="mb-3">
-              In a world of fleeting hype and paper gains, Rick is the flex you can count on. The narrative is clear: become Rick,
-              because greatness is inevitable.
-            </p>
-            <p>
-              This isn’t just a token. It’s a statement. Own the chain. Own the medallion. Become Rick.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <img src="images/n1neyrdWmXm5.png" class="img-fluid position-relative shadow-sm" style="border-radius: 20px;" alt="Rick the Medallion">
-        </div>
-      </div>
+    <div class="progress-bar">
+      <div id="progressFundWallets"></div>
     </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-txt text-center">
-        <h2>
-          The Ultimate Flex: Rick Wears a Medallion <br> While Being the Medallion!
-        </h2>
-        <p style="margin-bottom: 25px;">
-          A medallion so bold it needs another medallion. This is your moment—luxury, crypto, 
-          and unstoppable momentum in one. Don't wait—become Rick now.
-        </p>
-        <a href="buy.html" target="_blank" class="btn-main">Buy Now</a>
-        <div class="img-container" style="margin-top: 30px;">
-          <!-- Adjust 's.jpg' to your actual Rick image file name -->
-          <img src="images/OirAj0Hy2qU5.jpg" class="img-radius" alt="Rick the Medallion wearing a medallion" style="max-width: 100%; height: auto;">
-        </div>
-      </div>
+    <div class="progress-bar">
+      <div id="progressCreateToken"></div>
     </div>
-  </section>
-  
 
- <!-- TOKENOMICS SECTION -->
- <section id="tokenomics" class="tokenomics">
-  <div class="container">
-    <h2 class="tokenomics-title text-center" data-aos="fade-up" data-aos-duration="500">
-      Tokenomics
-    </h2>
-    <div class="row gy-4">
-
-      <!-- Card 1 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="700">
-        <div class="token-card">
-          <h4>Supply</h4>
-          <p>
-            1 Billion MEDALLION<br>
-            <em>Plenty for the entire kingdom to flex.</em>
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="900">
-        <div class="token-card">
-          <h4>Taxes</h4>
-          <p>
-            0%<br>
-            <em>All gains, no friction. HODL like royalty.</em>
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1100">
-        <div class="token-card">
-          <h4>Liquidity</h4>
-          <p>
-            Locked FOREVER<br>
-            <em>No turning back from greatness.</em>
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1300">
-        <div class="token-card">
-          <h4>Contract Renounced</h4>
-          <p>
-            No minting<br>
-            <em>The chain belongs to us all.</em>
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1500">
-        <div class="token-card">
-          <h4>Token Name</h4>
-          <p>
-            Rick The $MEDALLION<br>
-            <em>The unstoppable flex in crypto luxury.</em>
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1700">
-        <div class="token-card">
-          <h4>Token Symbol</h4>
-          <p>
-            $MEDALLION<br>
-            <em>Because a medallion should shine—always.</em>
-          </p>
-        </div>
-      </div>
-
-    </div><!-- /.row -->
-  </div><!-- /.container -->
-</section>
-
-
-  <!-- How to Buy Section -->
-  <section id="buy-now" class="how-buy">
-    <div class="container">
-        <div class="sec-t" data-aos="fade-up" data-aos-duration="500">
-            <h2>How to Buy</h2>
-        </div>
-        <div class="row gy-4 justify-content-center">
-            <div class="col-lg-3 col-md-6">
-                <div class="buy-single" data-aos="fade-up" data-aos-duration="1500">
-                    <h5>Buy Now</h5>
-                    <a href="https://pump.fun/coin/UdnKT39jzFvUwt8PgwBZXoG2WfTEFkx1zzkd4dtboss?coins_sort=market_cap" target="_blank" class="btn-main">Buy Now</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="buy-single" data-aos="fade-up" data-aos-duration="1700">
-                    <h5>Live Chart</h5>
-                    <a href="https://dexscreener.com/solana/4jzn8ud6a32ttttnw8gw8heyth3tuxd7lya5eyzwb7go" target="_blank" class="btn-main btn-border">Live Chart</a>
-                </div>
-        </div>
-      </div>
-      <div class="contract-adress">
-        <div class="firt">
-          <span>CONTRACT ADDRESS</span>
-          <p>
-            UdnKT39jzFvUwt8PgwBZXoG2WfTEFkx1zzkd4dtboss
-          </p>
-        </div>
-        <div class="btn-cun">
-          <button onclick="copy('UdnKT39jzFvUwt8PgwBZXoG2WfTEFkx1zzkd4dtboss','#copy_button_2')" id="copy_button_2" class="copy-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Copied!">
-            <img src="images/ZK3n0CqiRfev.png" alt="copy">
-          </button>
-        </div>
-      </div>
+    <!-- Log Output -->
+    <div class="log-output" id="logOutput">
+      <p>Logs will appear here...</p>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="row gy-4 justify-content-between">
-        <div class="col-lg-4">
-          <div class="footer-l">
-            <img src="images/iUiDDu7PiiL5.gif" class="footer-logo" alt="Spinning Medallion" style="height: 50px; margin-right: 10px;">
-            <img src="images/YhMA4PPauEH8.png" class="footer-logo" alt="Rick the Medallion Logo">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="footer-list">
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Rick</a></li>
-              <li><a href="#tokenomics">Tokenomics</a></li>
-              <li><a href="#buy-now">Become Rick</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-social">
-        <a href="https://t.me/medallionportal" target="_blank" class="btn-nav">
-          <img src="images/WbmCQEfVZ5WE.png" alt="Telegram">
-        </a>
-        <a href="https://x.com/Medalliononx" target="_blank" class="btn-nav">
-          <img src="images/t8ZYDoRgXa7F.png" alt="X">
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Page Loader -->
-  <div class="page-loader">
-    <div class="lds-grid">
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
+    <!-- Chart -->
+    <div class="chart-container">
+      <canvas id="tokenChart"></canvas>
     </div>
   </div>
 
-  <!-- JS Files -->
-  <script src="js/7BI5EX7rFGmL.js"></script>
-  <script src="js/vWpMhah5Y9nt.js"></script>
-  <script src="js/vIe4r5hkYmDs.js"></script>
-  <script src="js/fHVPNzUSjl7B.js"></script>
   <script>
-    AOS.init();
-  </script>
-  <script>
-    // Initialize Bootstrap tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'manual' });
+    // Log Function to Display Messages
+    const logOutput = document.getElementById('logOutput');
+    function log(message) {
+      const logEntry = document.createElement('p');
+      logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logOutput.appendChild(logEntry);
+      logOutput.scrollTop = logOutput.scrollHeight; // Auto-scroll to bottom
+    }
+
+    // Progress Bars
+    const progressBars = {
+      generateWallets: document.getElementById('progressGenerateWallets'),
+      fundWallets: document.getElementById('progressFundWallets'),
+      createToken: document.getElementById('progressCreateToken'),
+    };
+
+    function updateProgressBar(bar, progress) {
+      bar.style.width = `${progress}%`;
+    }
+
+    // Chart Initialization
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    const tokenChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Token Price',
+          data: [],
+          borderColor: '#23d5ab',
+          tension: 0.1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // Prevent chart from resizing
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
     });
 
-    function copy(text, target) {
-      var button = document.querySelector(target);
-      var input = document.createElement('input');
-      input.setAttribute('value', text);
-      document.body.appendChild(input);
-      input.select();
-      var result = document.execCommand('copy');
-      document.body.removeChild(input);
-      var tooltip = bootstrap.Tooltip.getInstance(button);
-      tooltip.show();
-      setTimeout(function () { tooltip.hide(); }, 800);
-      return result;
-    }
+    // Simulation Variables
+    let tokenPrice = 0;
+    let totalSpent = 0; // Total SOL spent during swapping
+    let totalReturned = 0; // Total SOL returned after selling tokens
+    let swapInterval;
+
+    // Simulate Wallet Generation
+    document.getElementById('generateWallets').addEventListener('click', async () => {
+      log('Generating 200 wallets...');
+      for (let i = 0; i <= 100; i += 5) {
+        updateProgressBar(progressBars.generateWallets, i);
+        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
+      }
+      log('Wallets generated successfully!');
+    });
+
+    // Simulate Funding Wallets
+    document.getElementById('fundWallets').addEventListener('click', async () => {
+      log('Funding wallets with 0.05 SOL each...');
+      for (let i = 0; i <= 100; i += 5) {
+        updateProgressBar(progressBars.fundWallets, i);
+        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
+      }
+      log('Wallets funded successfully!');
+    });
+
+    // Simulate Token Creation
+    document.getElementById('createToken').addEventListener('click', async () => {
+      const tokenName = document.getElementById('tokenName').value;
+      log(`Creating token "${tokenName}" on pump.fun...`);
+      for (let i = 0; i <= 100; i += 5) {
+        updateProgressBar(progressBars.createToken, i);
+        await new Promise(resolve => setTimeout(resolve, 50)); // Faster progress
+      }
+      log('Token created successfully!');
+      tokenPrice = 0; // Reset price to zero
+      totalSpent = 0; // Reset total spent
+      totalReturned = 0; // Reset total returned
+      tokenChart.data.labels = [];
+      tokenChart.data.datasets[0].data = [];
+      tokenChart.update();
+    });
+
+    // Simulate Swapping (4x Faster)
+    document.getElementById('startSwapping').addEventListener('click', () => {
+      log('Starting random swaps...');
+      swapInterval = setInterval(() => {
+        const swapAmount = Math.random() * 0.05; // Random swap amount between 0 and 0.05
+        tokenPrice += swapAmount; // Increase price based on swap amount
+        totalSpent += swapAmount; // Track total SOL spent
+        tokenChart.data.labels.push(new Date().toLocaleTimeString());
+        tokenChart.data.datasets[0].data.push(tokenPrice);
+        if (tokenChart.data.labels.length > 20) {
+          tokenChart.data.labels.shift();
+          tokenChart.data.datasets[0].data.shift();
+        }
+        tokenChart.update();
+        log(`Swap executed: +${swapAmount.toFixed(4)} SOL`);
+      }, 500); // 4x faster (every 500ms)
+    });
+
+    // Stop Swapping
+    document.getElementById('stopSwapping').addEventListener('click', () => {
+      log('Stopping swaps...');
+      clearInterval(swapInterval);
+      log(`Total SOL spent during swapping: ${totalSpent.toFixed(2)} SOL`);
+    });
+
+    // Simulate Selling Tokens (Big Dump)
+    document.getElementById('sellTokens').addEventListener('click', () => {
+      log('Selling all tokens...');
+      tokenPrice = 0; // Price drops to zero
+      totalReturned = totalSpent + (Math.random() * (512 - 180) + 180; // Random profit between 180 and 512 SOL
+      tokenChart.data.labels.push(new Date().toLocaleTimeString());
+      tokenChart.data.datasets[0].data.push(tokenPrice);
+      if (tokenChart.data.labels.length > 20) {
+        tokenChart.data.labels.shift();
+        tokenChart.data.datasets[0].data.shift();
+      }
+      tokenChart.update();
+      log(`Tokens sold successfully! Total SOL returned: ${totalReturned.toFixed(2)} SOL`);
+    });
+
+    // Simulate Returning SOL and Calculate Profit
+    document.getElementById('returnSol').addEventListener('click', () => {
+      const profit = totalReturned - totalSpent;
+      log(`Returning ${totalReturned.toFixed(2)} SOL to main wallet...`);
+      log(`Total profit: ${profit.toFixed(2)} SOL`);
+      log('SOL returned successfully!');
+    });
   </script>
-
-
-
-</body></html>
+</body>
+</html>
