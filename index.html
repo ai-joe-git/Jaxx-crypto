@@ -4,185 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jaxx: The Unkillable Meme Coin</title>
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Jaxx: The Unkillable Meme Coin">
+  <meta property="og:description" content="They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀">
+  <meta property="og:image" content="https://jaxx-crypto.vercel.app/jaxx-logo.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jaxx: The Unkillable Meme Coin">
+  <meta name="twitter:description" content="They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀">
+  <meta name="twitter:image" content="https://jaxx-crypto.vercel.app/jaxx-logo.jpg">
+  <!-- Styles and Fonts -->
   <style>
-    /* General Styles */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1a1a1a;
-      color: #fff;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: bold;
-      margin: 0;
-      letter-spacing: 1.5px;
-    }
-
-    a {
-      color: #00ff88;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Header Section */
-    #header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: url('header-bg.jpg') no-repeat center center/cover;
-      color: #fff;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    #header .logo {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: float 3s ease-in-out infinite, fadeIn 1s ease-in forwards;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    #header h1 {
-      font-size: 4.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-    }
-
-    #header p {
-      font-size: 1.5rem;
-      margin: 10px 0;
-      font-style: italic;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
-    }
-
-    #header .cta-buttons {
-      margin-top: 30px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    #header .cta-buttons a {
-      background: linear-gradient(135deg, #00ff88, #00cc66);
-      color: #1a1a1a;
-      padding: 15px 30px;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
-    }
-
-    #header .cta-buttons a:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
-    }
-
-    /* Infinite Scrolling Gallery */
-    #gallery {
-      padding: 80px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    #gallery .image-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    #gallery .image-container.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #gallery .image-container img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-    }
-
-    #gallery .image-container .share-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    #gallery .image-container:hover .share-button {
-      opacity: 1;
-    }
-
-    /* Footer Section */
-    footer {
-      background: #000;
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer .social-icons {
-      margin-bottom: 10px;
-    }
-
-    footer .social-icons a {
-      margin: 0 10px;
-      font-size: 1.2rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      #header h1 {
-        font-size: 3rem;
-      }
-
-      #header p {
-        font-size: 1.2rem;
-      }
-
-      #header .cta-buttons a {
-        padding: 12px 24px;
-        font-size: 1rem;
-      }
-    }
+    /* Your existing styles */
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -214,82 +47,82 @@
   </footer>
 
   <script>
-  // List of images (use absolute URLs)
-  const images = [
-    'https://jaxx-crypto.vercel.app/jaxx-logo.jpg',
-    'https://jaxx-crypto.vercel.app/meme1.jpg',
-    'https://jaxx-crypto.vercel.app/meme2.jpg',
-    'https://jaxx-crypto.vercel.app/meme3.jpg',
-    'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
-    'https://jaxx-crypto.vercel.app/header-bg.jpg',
-    'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
-    // Add more image URLs here
-  ];
+    // List of images (use absolute URLs)
+    const images = [
+      'https://jaxx-crypto.vercel.app/jaxx-logo.jpg',
+      'https://jaxx-crypto.vercel.app/meme1.jpg',
+      'https://jaxx-crypto.vercel.app/meme2.jpg',
+      'https://jaxx-crypto.vercel.app/meme3.jpg',
+      'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
+      'https://jaxx-crypto.vercel.app/header-bg.jpg',
+      'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
+      // Add more image URLs here
+    ];
 
-  // Infinite Scrolling Gallery Script
-  const gallery = document.getElementById('gallery');
-  let index = 0;
+    // Infinite Scrolling Gallery Script
+    const gallery = document.getElementById('gallery');
+    let index = 0;
 
-  function loadImages() {
-    for (let i = 0; i < 6; i++) { // Load 6 images at a time
-      if (index >= images.length) return;
+    function loadImages() {
+      for (let i = 0; i < 6; i++) { // Load 6 images at a time
+        if (index >= images.length) return;
 
-      const imageContainer = document.createElement('div');
-      imageContainer.classList.add('image-container');
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
 
-      const img = document.createElement('img');
-      img.src = images[index];
-      img.alt = `Jaxx Image ${index + 1}`;
+        const img = document.createElement('img');
+        img.src = images[index];
+        img.alt = `Jaxx Image ${index + 1}`;
 
-      const shareButton = document.createElement('div');
-      shareButton.classList.add('share-button');
-      shareButton.textContent = 'Share';
-      shareButton.onclick = () => shareImage(images[index]);
+        const shareButton = document.createElement('div');
+        shareButton.classList.add('share-button');
+        shareButton.textContent = 'Share';
+        shareButton.onclick = () => shareImage(); // Updated share function
 
-      imageContainer.appendChild(img);
-      imageContainer.appendChild(shareButton);
-      gallery.appendChild(imageContainer);
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(shareButton);
+        gallery.appendChild(imageContainer);
 
-      index++;
+        index++;
+      }
+
+      // Trigger fade-in animation for newly loaded images
+      setTimeout(() => {
+        const containers = document.querySelectorAll('#gallery .image-container');
+        containers.forEach(container => {
+          if (container.getBoundingClientRect().top < window.innerHeight) {
+            container.classList.add('visible');
+          }
+        });
+      }, 100);
     }
 
-    // Trigger fade-in animation for newly loaded images
-    setTimeout(() => {
+    // Share Website Link Function
+    function shareImage() {
+      const message = `Jaxx: The Unkillable Meme Coin - "They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"`;
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`;
+      window.open(shareUrl, '_blank');
+    }
+
+    // Load initial set of images
+    loadImages();
+
+    // Infinite Scroll Event Listener
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        loadImages();
+      }
+    });
+
+    // Fade-in images on scroll
+    window.addEventListener('scroll', () => {
       const containers = document.querySelectorAll('#gallery .image-container');
       containers.forEach(container => {
         if (container.getBoundingClientRect().top < window.innerHeight) {
           container.classList.add('visible');
         }
       });
-    }, 100);
-  }
-
-  // Share Image Function
-  function shareImage(imageUrl) {
-    const message = `Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 @Jaxx_Coin #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`;
-    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(imageUrl)}`;
-    window.open(shareUrl, '_blank');
-  }
-
-  // Load initial set of images
-  loadImages();
-
-  // Infinite Scroll Event Listener
-  window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-      loadImages();
-    }
-  });
-
-  // Fade-in images on scroll
-  window.addEventListener('scroll', () => {
-    const containers = document.querySelectorAll('#gallery .image-container');
-    containers.forEach(container => {
-      if (container.getBoundingClientRect().top < window.innerHeight) {
-        container.classList.add('visible');
-      }
     });
-  });
-</script>
+  </script>
 </body>
 </html>
