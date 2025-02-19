@@ -190,21 +190,33 @@
   </footer>
 
   <script>
+    // Function to fetch all images from the root directory
+    async function fetchImages() {
+      try {
+        const response = await fetch('/'); // Fetch root directory
+        const text = await response.text();
+        const parser = new DOMParser();
+        const html = parser.parseFromString(text, 'text/html');
+        const links = Array.from(html.querySelectorAll('a'))
+          .map(link => link.href)
+          .filter(href => /\.(jpg|jpeg|png|gif)$/i.test(href)); // Filter image files
+        return links;
+      } catch (error) {
+        console.error('Error fetching images:', error);
+        return [];
+      }
+    }
+
     // Infinite Scrolling Gallery Script
     const gallery = document.getElementById('gallery');
-    const images = [
-      'jaxx-logo.jpg',
-      'jaxx-meme1.jpg',
-      'jaxx-meme2.jpg',
-      'meme1.jpg',
-      'meme2.jpg',
-      'meme3.jpg',
-      // Add more image paths here
-    ];
-
+    let images = [];
     let index = 0;
 
-    function loadImages() {
+    async function loadImages() {
+      if (images.length === 0) {
+        images = await fetchImages(); // Fetch images if not already loaded
+      }
+
       for (let i = 0; i < 6; i++) { // Load 6 images at a time
         if (index >= images.length) return;
 
@@ -241,7 +253,7 @@
     // Share Image Function
     function shareImage(imageUrl, message) {
       const shareText = encodeURIComponent(message);
-      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(imageUrl)}`;
+      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(imageUrl)}`;
       window.open(shareUrl, '_blank');
     }
 
