@@ -190,16 +190,16 @@
   </footer>
 
   <script>
-    // List of images (manually specified)
+    // List of images (use absolute URLs)
     const images = [
-      'jaxx-logo.jpg',
-      'meme1.jpg',
-      'meme2.jpg',
-      'meme3.jpg',
-      'about-jaxx.jpg',
-      'tokenomics-pie.jpg'
-
-      // Add more image paths here
+      'https://jaxx-crypto.vercel.app/jaxx-logo.jpg',
+      'https://jaxx-crypto.vercel.app/meme1.jpg',
+      'https://jaxx-crypto.vercel.app/meme2.jpg',
+      'https://jaxx-crypto.vercel.app/meme3.jpg',
+      'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
+      'https://jaxx-crypto.vercel.app/header-bg.jpg',
+      'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
+      // Add more image URLs here
     ];
 
     // Infinite Scrolling Gallery Script
@@ -243,7 +243,7 @@
     // Share Image Function
     function shareImage(imageUrl, message) {
       const shareText = encodeURIComponent(message);
-      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(window.location.origin + '/' + imageUrl)}`;
+      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(imageUrl)}`;
       window.open(shareUrl, '_blank');
     }
 
