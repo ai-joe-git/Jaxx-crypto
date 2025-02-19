@@ -41,6 +41,35 @@
       text-decoration: underline;
     }
 
+    /* Music Toggle Button */
+    #music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    #music-toggle:hover {
+      background: rgba(0, 0, 0, 1);
+      transform: scale(1.1);
+    }
+
+    #music-toggle i {
+      font-size: 1.5rem;
+    }
+
     /* Header Section */
     #header {
       height: 100vh;
@@ -207,8 +236,15 @@
   </style>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+  <!-- Music Toggle Button -->
+  <button id="music-toggle">
+    <i class="fas fa-music"></i>
+  </button>
+
   <!-- Header Section -->
   <section id="header">
     <img src="jaxxlogo.png" alt="Jaxx Logo" class="logo">
@@ -234,6 +270,12 @@
     </div>
     <p>"Surviving since 2025. Just like your grandma’s fruitcake. 🪳©"</p>
   </footer>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="background.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     // List of images (use absolute URLs or relative paths)
@@ -405,6 +447,22 @@
       link.click();
       document.body.removeChild(link);
     }
+
+    // Music Toggle Functionality
+    const musicToggle = document.getElementById('music-toggle');
+    const backgroundMusic = document.getElementById('background-music');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        backgroundMusic.pause();
+        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+      } else {
+        backgroundMusic.play();
+        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+      isPlaying = !isPlaying;
+    });
 
     // Load initial set of images
     loadImages();
