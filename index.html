@@ -40,12 +40,6 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Section Styles */
-    section {
-      padding: 80px 20px;
-      text-align: center;
-    }
-
     /* Header Section */
     #header {
       height: 100vh;
@@ -81,95 +75,51 @@
       font-size: 1rem;
     }
 
-    /* About Section */
-    #about {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
+    /* Infinite Scrolling Gallery */
+    #gallery {
       padding: 80px 20px;
-    }
-
-    #about img {
-      max-width: 300px;
-      border-radius: 10px;
-    }
-
-    #about .glass {
-      max-width: 500px;
-    }
-
-    /* Mascot Section */
-    #mascot {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 80px 20px;
-    }
-
-    #mascot .carousel {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    #mascot .carousel img {
-      max-width: 200px;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    #mascot .carousel img:hover {
-      transform: scale(1.1);
-    }
-
-    /* Tokenomics Section */
-    #tokenomics {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 80px 20px;
-    }
-
-    #tokenomics .pie-chart {
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    /* Roadmap Section */
-    #roadmap {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 80px 20px;
-    }
-
-    #roadmap .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    #roadmap .timeline .phase {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    /* Community Section */
-    #community {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 80px 20px;
-    }
-
-    #community .meme-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      max-width: 800px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
-    #community .meme-grid img {
+    #gallery .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    #gallery .image-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #gallery .image-container img {
       width: 100%;
       border-radius: 10px;
+      display: block;
+    }
+
+    #gallery .image-container .share-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #gallery .image-container:hover .share-button {
+      opacity: 1;
     }
 
     /* Footer Section */
@@ -200,62 +150,9 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <img src="about-jaxx.jpg" alt="Jaxx Mascot">
-    <div class="glass">
-      <h2>What is Jaxx?</h2>
-      <p>Jaxx is the ultimate meme coin, inspired by the unkillable spirit of the cockroach. Built on Solana, Jaxx is fast, efficient, and here to stay.</p>
-      <a href="#mascot">Meet Jaxx</a>
-    </div>
-  </section>
-
-  <!-- Mascot Section -->
-  <section id="mascot">
-    <h2>The Coolest Cockroach in Crypto</h2>
-    <div class="carousel">
-      <img src="jaxx-logo.jpg" alt="Jaxx Logo">
-      <img src="jaxx-meme1.jpg" alt="Jaxx Meme 1">
-      <img src="jaxx-meme2.jpg" alt="Jaxx Meme 2">
-    </div>
-  </section>
-
-  <!-- Tokenomics Section -->
-  <section id="tokenomics">
-    <h2>Tokenomics: Built to Last</h2>
-    <img src="tokenomics-pie.jpg" alt="Tokenomics Pie Chart" class="pie-chart">
-    <p>1 Billion $JAXX tokens on Solana. No minting, no owner, no fees—fully renounced and decentralized.</p>
-    <a href="https://pump.fun/jaxx" target="_blank">Buy $JAXX</a>
-  </section>
-
-  <!-- Roadmap Section -->
-  <section id="roadmap">
-    <h2>The Jaxx Roadmap</h2>
-    <div class="timeline">
-      <div class="phase glass">
-        <h3>Phase 1: Community Launch & Meme Ignition</h3>
-        <p>Fair token launch, meme contests, social media blitz.</p>
-      </div>
-      <div class="phase glass">
-        <h3>Phase 2: Utility & Engagement</h3>
-        <p>Staking launch, "Roach Motel" community platforms, DeFi explorations.</p>
-      </div>
-      <div class="phase glass">
-        <h3>Phase 3: Resilience & Expansion</h3>
-        <p>Decentralized governance, partnerships, ecosystem growth.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Community Section -->
-  <section id="community">
-    <h2>Welcome to the Roach Motel</h2>
-    <div class="meme-grid">
-      <img src="meme1.jpg" alt="Community Meme 1">
-      <img src="meme2.jpg" alt="Community Meme 2">
-      <img src="meme3.jpg" alt="Community Meme 3">
-    </div>
-    <a href="https://t.me/jaxxcoin" target="_blank">Join Telegram</a>
+  <!-- Infinite Scrolling Gallery -->
+  <section id="gallery">
+    <!-- Images will be dynamically loaded here -->
   </section>
 
   <!-- Footer Section -->
@@ -267,5 +164,83 @@
     </div>
     <p>© 2025 Jaxx. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Infinite Scrolling Gallery Script
+    const gallery = document.getElementById('gallery');
+    const images = [
+      'jaxx-logo.jpg',
+      'jaxx-meme1.jpg',
+      'jaxx-meme2.jpg',
+      'meme1.jpg',
+      'meme2.jpg',
+      'meme3.jpg',
+      // Add more image paths here
+    ];
+
+    let index = 0;
+
+    function loadImages() {
+      for (let i = 0; i < 6; i++) { // Load 6 images at a time
+        if (index >= images.length) return;
+
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+
+        const img = document.createElement('img');
+        img.src = images[index];
+        img.alt = `Jaxx Image ${index + 1}`;
+
+        const shareButton = document.createElement('div');
+        shareButton.classList.add('share-button');
+        shareButton.textContent = 'Share';
+        shareButton.onclick = () => shareImage(images[index]);
+
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(shareButton);
+        gallery.appendChild(imageContainer);
+
+        index++;
+      }
+
+      // Trigger fade-in animation for newly loaded images
+      setTimeout(() => {
+        const containers = document.querySelectorAll('#gallery .image-container');
+        containers.forEach(container => {
+          if (container.getBoundingClientRect().top < window.innerHeight) {
+            container.classList.add('visible');
+          }
+        });
+      }, 100);
+    }
+
+    // Share Image Function
+    function shareImage(imageUrl) {
+      const shareText = `Check out this awesome $JAXX meme! 🪳🚀 #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`;
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
+
+      window.open(shareUrl, '_blank');
+    }
+
+    // Load initial set of images
+    loadImages();
+
+    // Infinite Scroll Event Listener
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        loadImages();
+      }
+    });
+
+    // Fade-in images on scroll
+    window.addEventListener('scroll', () => {
+      const containers = document.querySelectorAll('#gallery .image-container');
+      containers.forEach(container => {
+        if (container.getBoundingClientRect().top < window.innerHeight) {
+          container.classList.add('visible');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
