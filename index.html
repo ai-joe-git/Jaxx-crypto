@@ -411,8 +411,13 @@
         downloadButton.textContent = 'Download';
         downloadButton.onclick = () => downloadImage(images[index]); // Download function
 
+        const viewButton = document.createElement('button');
+        viewButton.textContent = 'View';
+        viewButton.onclick = () => viewImage(images[index]); // View function
+
         buttonContainer.appendChild(shareButton);
         buttonContainer.appendChild(downloadButton);
+        buttonContainer.appendChild(viewButton);
         imageContainer.appendChild(img);
         imageContainer.appendChild(buttonContainer);
         gallery.appendChild(imageContainer);
@@ -446,6 +451,22 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    }
+
+    // View Image Function
+    function viewImage(imageUrl) {
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '100vh';
+      img.style.position = 'fixed';
+      img.style.top = '50%';
+      img.style.left = '50%';
+      img.style.transform = 'translate(-50%, -50%)';
+      img.style.zIndex = '1000';
+      img.style.cursor = 'pointer';
+      img.onclick = () => document.body.removeChild(img);
+      document.body.appendChild(img);
     }
 
     // Music Toggle Functionality
