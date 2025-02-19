@@ -143,32 +143,34 @@
       display: block;
     }
 
-    #gallery .image-container .share-button,
-    #gallery .image-container .download-button {
+    #gallery .image-container .button-container {
       position: absolute;
       top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
+      display: flex;
+      gap: 10px; /* Space between buttons */
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    #gallery .image-container .share-button {
-      left: 40%;
-    }
-
-    #gallery .image-container .download-button {
-      left: 60%;
-    }
-
-    #gallery .image-container:hover .share-button,
-    #gallery .image-container:hover .download-button {
+    #gallery .image-container:hover .button-container {
       opacity: 1;
+    }
+
+    #gallery .image-container .button-container button {
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #gallery .image-container .button-container button:hover {
+      background: rgba(0, 0, 0, 1);
     }
 
     /* Footer Section */
@@ -357,19 +359,21 @@
         img.src = images[index];
         img.alt = `Jaxx Image ${index + 1}`;
 
-        const shareButton = document.createElement('div');
-        shareButton.classList.add('share-button');
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
+        const shareButton = document.createElement('button');
         shareButton.textContent = 'Share';
         shareButton.onclick = () => shareImage(); // Share function
 
-        const downloadButton = document.createElement('div');
-        downloadButton.classList.add('download-button');
+        const downloadButton = document.createElement('button');
         downloadButton.textContent = 'Download';
         downloadButton.onclick = () => downloadImage(images[index]); // Download function
 
+        buttonContainer.appendChild(shareButton);
+        buttonContainer.appendChild(downloadButton);
         imageContainer.appendChild(img);
-        imageContainer.appendChild(shareButton);
-        imageContainer.appendChild(downloadButton);
+        imageContainer.appendChild(buttonContainer);
         gallery.appendChild(imageContainer);
 
         index++;
