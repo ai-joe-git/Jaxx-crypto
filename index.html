@@ -265,8 +265,8 @@
   <footer>
     <div class="social-icons">
       <a href="https://x.com/Jaxx_Coin?t=Pe3shFH0Qv57O1zGzNj0Bg&s=09" target="_blank">Twitter</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xQO0w&s=09" target="_blank">Telegram</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xQO0w&s=09" target="_blank">Discord</a>
+      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Telegram</a>
+      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Discord</a>
     </div>
     <p>"Surviving since 2025. Just like your grandma’s fruitcake. 🪳©"</p>
   </footer>
@@ -405,15 +405,15 @@
 
         const shareButton = document.createElement('button');
         shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(images[index]); // Share function
+        shareButton.dataset.imageUrl = images[index];
 
         const downloadButton = document.createElement('button');
         downloadButton.textContent = 'Download';
-        downloadButton.onclick = () => downloadImage(images[index]); // Download function
+        downloadButton.dataset.imageUrl = images[index];
 
         const viewButton = document.createElement('button');
         viewButton.textContent = 'View';
-        viewButton.onclick = () => viewImage(images[index]); // View function
+        viewButton.dataset.imageUrl = images[index];
 
         buttonContainer.appendChild(shareButton);
         buttonContainer.appendChild(downloadButton);
@@ -435,6 +435,20 @@
         });
       }, 100);
     }
+
+    // Event delegation for buttons
+    gallery.addEventListener('click', (event) => {
+      if (event.target.tagName === 'BUTTON') {
+        const imageUrl = event.target.dataset.imageUrl;
+        if (event.target.textContent === 'Share') {
+          shareImage(imageUrl);
+        } else if (event.target.textContent === 'Download') {
+          downloadImage(imageUrl);
+        } else if (event.target.textContent === 'View') {
+          viewImage(imageUrl);
+        }
+      }
+    });
 
     // Share Website Link Function
     function shareImage(imageUrl) {
