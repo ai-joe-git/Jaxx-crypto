@@ -7,7 +7,7 @@
   <style>
     /* General Styles */
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #1a1a1a;
@@ -16,9 +16,10 @@
     }
 
     h1, h2, h3 {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-weight: bold;
       margin: 0;
+      letter-spacing: 1.5px;
     }
 
     a {
@@ -30,16 +31,6 @@
       text-decoration: underline;
     }
 
-    /* Glassmorphism Effect */
-    .glass {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
     /* Header Section */
     #header {
       height: 100vh;
@@ -49,30 +40,46 @@
       align-items: center;
       background: url('header-bg.jpg') no-repeat center center/cover;
       color: #fff;
+      text-align: center;
+      padding: 0 20px;
     }
 
     #header h1 {
-      font-size: 3.5rem;
+      font-size: 4.5rem;
       margin-bottom: 10px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     #header p {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       margin: 10px 0;
+      font-style: italic;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
     }
 
     #header .cta-buttons {
-      margin-top: 20px;
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     #header .cta-buttons a {
-      background: #00ff88;
+      background: linear-gradient(135deg, #00ff88, #00cc66);
       color: #1a1a1a;
-      padding: 12px 24px;
-      border-radius: 5px;
-      margin: 0 10px;
+      padding: 15px 30px;
+      border-radius: 50px;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+    }
+
+    #header .cta-buttons a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
     }
 
     /* Infinite Scrolling Gallery */
@@ -137,15 +144,32 @@
       margin: 0 10px;
       font-size: 1.2rem;
     }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      #header h1 {
+        font-size: 3rem;
+      }
+
+      #header p {
+        font-size: 1.2rem;
+      }
+
+      #header .cta-buttons a {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header Section -->
   <section id="header">
     <h1>Jaxx: The Unkillable Meme Coin</h1>
-    <p>Resilience. Adaptability. Community. Built on Solana.</p>
+    <p>"They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"</p>
     <div class="cta-buttons">
-      <a href="https://t.me/jaxxcoin" target="_blank">Join the Revolution</a>
+      <a href="https://t.me/jaxxcoin" target="_blank">Join the Roach Revolution</a>
       <a href="https://pump.fun/jaxx" target="_blank">Buy $JAXX</a>
     </div>
   </section>
@@ -162,7 +186,7 @@
       <a href="https://t.me/jaxxcoin" target="_blank">Telegram</a>
       <a href="https://discord.gg/jaxxcoin" target="_blank">Discord</a>
     </div>
-    <p>© 2025 Jaxx. All rights reserved.</p>
+    <p>"Surviving since 2025. Just like your grandma’s fruitcake. 🪳©"</p>
   </footer>
 
   <script>
@@ -194,7 +218,7 @@
         const shareButton = document.createElement('div');
         shareButton.classList.add('share-button');
         shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(images[index]);
+        shareButton.onclick = () => shareImage(images[index], `"Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes"`);
 
         imageContainer.appendChild(img);
         imageContainer.appendChild(shareButton);
@@ -215,10 +239,9 @@
     }
 
     // Share Image Function
-    function shareImage(imageUrl) {
-      const shareText = `Check out this awesome $JAXX meme! 🪳🚀 #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`;
-      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
-
+    function shareImage(imageUrl, message) {
+      const shareText = encodeURIComponent(message);
+      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(imageUrl)}`;
       window.open(shareUrl, '_blank');
     }
 
