@@ -206,7 +206,7 @@
   <!-- Footer Section -->
   <footer>
     <div class="social-icons">
-      <a href="https://twitter.com/jaxxcoin" target="_blank">Twitter</a>
+      <a href="https://x.com/Jaxx_Coin?t=Pe3shFH0Qv57O1zGzNj0Bg&s=09" target="_blank">Twitter</a>
       <a href="https://t.me/jaxxcoin" target="_blank">Telegram</a>
       <a href="https://discord.gg/jaxxcoin" target="_blank">Discord</a>
     </div>
@@ -221,7 +221,8 @@
       'https://jaxx-crypto.vercel.app/meme2.jpg',
       'https://jaxx-crypto.vercel.app/meme3.jpg',
       'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
- 'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
+      'https://jaxx-crypto.vercel.app/header-bg.jpg',
+      'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
       // Add more image URLs here
     ];
 
@@ -243,7 +244,7 @@
         const shareButton = document.createElement('div');
         shareButton.classList.add('share-button');
         shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(images[index], `"Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes"`);
+        shareButton.onclick = () => shareImage(images[index]);
 
         imageContainer.appendChild(img);
         imageContainer.appendChild(shareButton);
@@ -264,9 +265,9 @@
     }
 
     // Share Image Function
-    function shareImage(imageUrl, message) {
-      const shareText = encodeURIComponent(message);
-      const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(imageUrl)}`;
+    function shareImage(imageUrl) {
+      const message = encodeURIComponent(`Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 @Jaxx_Coin #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`);
+      const shareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodeURIComponent(imageUrl)}`;
       window.open(shareUrl, '_blank');
     }
 
