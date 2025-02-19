@@ -265,8 +265,8 @@
   <footer>
     <div class="social-icons">
       <a href="https://x.com/Jaxx_Coin?t=Pe3shFH0Qv57O1zGzNj0Bg&s=09" target="_blank">Twitter</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Telegram</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Discord</a>
+      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xQO0w&s=09" target="_blank">Telegram</a>
+      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xQO0w&s=09" target="_blank">Discord</a>
     </div>
     <p>"Surviving since 2025. Just like your grandma’s fruitcake. 🪳©"</p>
   </footer>
@@ -405,7 +405,7 @@
 
         const shareButton = document.createElement('button');
         shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(); // Share function
+        shareButton.onclick = () => shareImage(images[index]); // Share function
 
         const downloadButton = document.createElement('button');
         downloadButton.textContent = 'Download';
@@ -437,7 +437,7 @@
     }
 
     // Share Website Link Function
-    function shareImage() {
+    function shareImage(imageUrl) {
       const message = `Jaxx: The Unkillable Meme Coin - "They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"`;
       const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`;
       window.open(shareUrl, '_blank');
