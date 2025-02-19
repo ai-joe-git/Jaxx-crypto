@@ -214,82 +214,82 @@
   </footer>
 
   <script>
-    // List of images (use absolute URLs)
-    const images = [
-      'https://jaxx-crypto.vercel.app/jaxx-logo.jpg',
-      'https://jaxx-crypto.vercel.app/meme1.jpg',
-      'https://jaxx-crypto.vercel.app/meme2.jpg',
-      'https://jaxx-crypto.vercel.app/meme3.jpg',
-      'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
-      'https://jaxx-crypto.vercel.app/header-bg.jpg',
-      'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
-      // Add more image URLs here
-    ];
+  // List of images (use absolute URLs)
+  const images = [
+    'https://jaxx-crypto.vercel.app/jaxx-logo.jpg',
+    'https://jaxx-crypto.vercel.app/meme1.jpg',
+    'https://jaxx-crypto.vercel.app/meme2.jpg',
+    'https://jaxx-crypto.vercel.app/meme3.jpg',
+    'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
+    'https://jaxx-crypto.vercel.app/header-bg.jpg',
+    'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
+    // Add more image URLs here
+  ];
 
-    // Infinite Scrolling Gallery Script
-    const gallery = document.getElementById('gallery');
-    let index = 0;
+  // Infinite Scrolling Gallery Script
+  const gallery = document.getElementById('gallery');
+  let index = 0;
 
-    function loadImages() {
-      for (let i = 0; i < 6; i++) { // Load 6 images at a time
-        if (index >= images.length) return;
+  function loadImages() {
+    for (let i = 0; i < 6; i++) { // Load 6 images at a time
+      if (index >= images.length) return;
 
-        const imageContainer = document.createElement('div');
-        imageContainer.classList.add('image-container');
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('image-container');
 
-        const img = document.createElement('img');
-        img.src = images[index];
-        img.alt = `Jaxx Image ${index + 1}`;
+      const img = document.createElement('img');
+      img.src = images[index];
+      img.alt = `Jaxx Image ${index + 1}`;
 
-        const shareButton = document.createElement('div');
-        shareButton.classList.add('share-button');
-        shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(images[index]);
+      const shareButton = document.createElement('div');
+      shareButton.classList.add('share-button');
+      shareButton.textContent = 'Share';
+      shareButton.onclick = () => shareImage(images[index]);
 
-        imageContainer.appendChild(img);
-        imageContainer.appendChild(shareButton);
-        gallery.appendChild(imageContainer);
+      imageContainer.appendChild(img);
+      imageContainer.appendChild(shareButton);
+      gallery.appendChild(imageContainer);
 
-        index++;
-      }
-
-      // Trigger fade-in animation for newly loaded images
-      setTimeout(() => {
-        const containers = document.querySelectorAll('#gallery .image-container');
-        containers.forEach(container => {
-          if (container.getBoundingClientRect().top < window.innerHeight) {
-            container.classList.add('visible');
-          }
-        });
-      }, 100);
+      index++;
     }
 
-    // Share Image Function
-    function shareImage(imageUrl) {
-      const message = encodeURIComponent(`Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 @Jaxx_Coin #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`);
-      const shareUrl = `https://twitter.com/intent/tweet?text=${message}&url=${encodeURIComponent(imageUrl)}`;
-      window.open(shareUrl, '_blank');
-    }
-
-    // Load initial set of images
-    loadImages();
-
-    // Infinite Scroll Event Listener
-    window.addEventListener('scroll', () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-        loadImages();
-      }
-    });
-
-    // Fade-in images on scroll
-    window.addEventListener('scroll', () => {
+    // Trigger fade-in animation for newly loaded images
+    setTimeout(() => {
       const containers = document.querySelectorAll('#gallery .image-container');
       containers.forEach(container => {
         if (container.getBoundingClientRect().top < window.innerHeight) {
           container.classList.add('visible');
         }
       });
+    }, 100);
+  }
+
+  // Share Image Function
+  function shareImage(imageUrl) {
+    const message = `Check out this $JAXX meme. It’s unkillable, just like me. 🪳🚀 @Jaxx_Coin #JaxxCoin #UnkillableMemeCoin #Solana #CryptoMemes`;
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(imageUrl)}`;
+    window.open(shareUrl, '_blank');
+  }
+
+  // Load initial set of images
+  loadImages();
+
+  // Infinite Scroll Event Listener
+  window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+      loadImages();
+    }
+  });
+
+  // Fade-in images on scroll
+  window.addEventListener('scroll', () => {
+    const containers = document.querySelectorAll('#gallery .image-container');
+    containers.forEach(container => {
+      if (container.getBoundingClientRect().top < window.innerHeight) {
+        container.classList.add('visible');
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
