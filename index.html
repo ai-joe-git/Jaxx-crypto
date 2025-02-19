@@ -44,6 +44,29 @@
       padding: 0 20px;
     }
 
+    #header .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: float 3s ease-in-out infinite, fadeIn 1s ease-in forwards;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
     #header h1 {
       font-size: 4.5rem;
       margin-bottom: 10px;
@@ -166,6 +189,7 @@
 <body>
   <!-- Header Section -->
   <section id="header">
+    <img src="jaxxlogo.jpg" alt="Jaxx Logo" class="logo">
     <h1>Jaxx: The Unkillable Meme Coin</h1>
     <p>"They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"</p>
     <div class="cta-buttons">
@@ -197,7 +221,7 @@
       'https://jaxx-crypto.vercel.app/meme2.jpg',
       'https://jaxx-crypto.vercel.app/meme3.jpg',
       'https://jaxx-crypto.vercel.app/about-jaxx.jpg',
-      'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
+ 'https://jaxx-crypto.vercel.app/tokenomics-pie.jpg',
       // Add more image URLs here
     ];
 
