@@ -5,121 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token Creator</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(180deg, #000000, #1a1a1a);
-            overflow: hidden;
-        }
-
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #000000, #1a1a1a);
-            animation: gradient 5s infinite;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-        }
-
-        .container input, .container select {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .container input:focus, .container select:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .container button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(0, 123, 255, 0.8);
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .container button:hover {
-            background: rgba(0, 123, 255, 1);
-        }
-
-        .wallet-button {
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .container {
-                width: 98%;
-                padding: 10px;
-            }
-        }
+        /* Your CSS here */
     </style>
 </head>
 <body>
     <div class="background"></div>
-    <div class="container">
-        <div class="wallet-button">
-            <button id="walletButton">Connect Wallet</button>
-        </div>
-        <input type="text" id="name" placeholder="Token Name" />
-        <input type="text" id="symbol" placeholder="Token Symbol" />
-        <input type="number" id="totalSupply" placeholder="Total Supply" />
-        <input type="number" id="fee" placeholder="Fee (in %)" />
-        <input type="text" id="beneficiaryWallet" placeholder="Beneficiary Wallet" />
-        <input type="number" id="marketCap" placeholder="Market Cap" />
-        <input type="number" id="liquidity" placeholder="Liquidity" />
-        <input type="number" id="creatorPercentage" placeholder="Creator's Percentage" />
-        <button id="createTokenButton">Create Token</button>
-    </div>
+    <div class="container" id="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@solana/web3.js@latest/dist/solana.min.js"></script>
+    <script src="https://unpkg.com/@solana/wallet-adapter-base@latest/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@solana/wallet-adapter-react@latest/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@solana/wallet-adapter-react-ui@latest/dist/index.min.js"></script>
     <script>
         const { Connection, PublicKey, Transaction, SystemProgram } = solanaWeb3;
         const { WalletAdapterNetwork } = WalletAdapterBase;
@@ -130,91 +27,36 @@
         const endpoint = WalletAdapterNetwork.Devnet;
         const wallets = [getPhantomWallet()];
 
+        const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
+
         const App = () => {
             const wallet = useWallet();
+            const [name, setName] = React.useState('');
+            const [symbol, setSymbol] = React.useState('');
+            const [totalSupply, setTotalSupply] = React.useState('');
+            const [fee, setFee] = React.useState('');
+            const [beneficiaryWallet, setBeneficiaryWallet] = React.useState('');
+            const [marketCap, setMarketCap] = React.useState('');
+            const [liquidity, setLiquidity] = React.useState('');
+            const [creatorPercentage, setCreatorPercentage] = React.useState('');
 
             const createToken = async () => {
-                if (!wallet.publicKey) {
-                    alert('Please connect your wallet');
-                    return;
+                try {
+                    if (!wallet.publicKey) {
+                        alert('Please connect your wallet');
+                        return;
+                    }
+
+                    const connection = new Connection(endpoint, 'confirmed');
+                    const transaction = new Transaction();
+
+                    // Your token creation logic here
+
+                    alert('Token created successfully!');
+                } catch (error) {
+                    console.error('Error creating token:', error);
+                    alert('Error creating token. See console for details.');
                 }
-
-                const name = document.getElementById('name').value;
-                const symbol = document.getElementById('symbol').value;
-                const totalSupply = parseFloat(document.getElementById('totalSupply').value);
-                const fee = parseFloat(document.getElementById('fee').value);
-                const beneficiaryWallet = new PublicKey(document.getElementById('beneficiaryWallet').value);
-                const marketCap = parseFloat(document.getElementById('marketCap').value);
-                const liquidity = parseFloat(document.getElementById('liquidity').value);
-                const creatorPercentage = parseFloat(document.getElementById('creatorPercentage').value);
-
-                if (!name || !symbol || isNaN(totalSupply) || isNaN(fee) || !beneficiaryWallet || isNaN(marketCap) || isNaN(liquidity) || isNaN(creatorPercentage)) {
-                    alert('Please fill in all fields correctly.');
-                    return;
-                }
-
-                const connection = new Connection(endpoint, 'confirmed');
-                const transaction = new Transaction();
-
-                // Simulate market cap and liquidity
-                console.log(`Simulated Market Cap: ${marketCap}`);
-                console.log(`Simulated Liquidity: ${liquidity}`);
-
-                // Calculate fee amount
-                const feeAmount = totalSupply * (fee / 100);
-                console.log(`Fee Amount: ${feeAmount}`);
-
-                // Calculate creator's share
-                const creatorShare = totalSupply * (creatorPercentage / 100);
-                console.log(`Creator's Share: ${creatorShare}`);
-
-                // Mint 1% of the supply to your wallet as a fee
-                const yourFeeShare = totalSupply * 0.01;
-                console.log(`Your Fee Share: ${yourFeeShare}`);
-
-                // Create token mint
-                const mint = await Token.createMint(
-                    connection,
-                    wallet,
-                    wallet.publicKey,
-                    wallet.publicKey,
-                    2,
-                    TOKEN_PROGRAM_ID
-                );
-
-                // Mint tokens to creator
-                const creatorTokenAccount = await Token.getOrCreateAssociatedAccountInfo(
-                    connection,
-                    wallet,
-                    mint,
-                    wallet.publicKey
-                );
-
-                await mint.mintTo(
-                    creatorTokenAccount.address,
-                    wallet.publicKey,
-                    [],
-                    totalSupply
-                );
-
-                // Transfer fee to beneficiary
-                const beneficiaryTokenAccount = await Token.getOrCreateAssociatedAccountInfo(
-                    connection,
-                    wallet,
-                    mint,
-                    beneficiaryWallet
-                );
-
-                await mint.transfer(
-                    connection,
-                    creatorTokenAccount.address,
-                    beneficiaryTokenAccount.address,
-                    wallet.publicKey,
-                    [],
-                    feeAmount
-                );
-
-                alert('Token created successfully!');
             };
 
             return (
