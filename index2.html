@@ -123,45 +123,129 @@
     <script src="https://unpkg.com/@solana/wallet-adapter-react@latest/dist/index.min.js"></script>
     <script src="https://unpkg.com/@solana/web3.js@latest/dist/solana.min.js"></script>
     <script>
-        document.getElementById('walletButton').addEventListener('click', () => {
-            // Wallet connection logic here
-            alert('Wallet connection logic needs to be implemented.');
-        });
+        const { Connection, PublicKey, Transaction, SystemProgram } = solanaWeb3;
+        const { WalletAdapterNetwork } = WalletAdapterBase;
+        const { getPhantomWallet } = Wallets;
+        const { useWallet, WalletProvider, ConnectionProvider } = WalletAdapterReact;
+        const { WalletModalProvider, WalletMultiButton } = WalletAdapterReactUI;
 
-        document.getElementById('createTokenButton').addEventListener('click', async () => {
-            const name = document.getElementById('name').value;
-            const symbol = document.getElementById('symbol').value;
-            const totalSupply = parseFloat(document.getElementById('totalSupply').value);
-            const fee = parseFloat(document.getElementById('fee').value);
-            const beneficiaryWallet = document.getElementById('beneficiaryWallet').value;
-            const marketCap = parseFloat(document.getElementById('marketCap').value);
-            const liquidity = parseFloat(document.getElementById('liquidity').value);
-            const creatorPercentage = parseFloat(document.getElementById('creatorPercentage').value);
+        const endpoint = WalletAdapterNetwork.Devnet;
+        const wallets = [getPhantomWallet()];
 
-            if (!name || !symbol || isNaN(totalSupply) || isNaN(fee) || !beneficiaryWallet || isNaN(marketCap) || isNaN(liquidity) || isNaN(creatorPercentage)) {
-                alert('Please fill in all fields correctly.');
-                return;
-            }
+        const App = () => {
+            const wallet = useWallet();
 
-            // Token creation logic here
-            alert('Token creation logic needs to be implemented.');
+            const createToken = async () => {
+                if (!wallet.publicKey) {
+                    alert('Please connect your wallet');
+                    return;
+                }
 
-            // Simulate market cap and liquidity
-            console.log(`Simulated Market Cap: ${marketCap}`);
-            console.log(`Simulated Liquidity: ${liquidity}`);
+                const name = document.getElementById('name').value;
+                const symbol = document.getElementById('symbol').value;
+                const totalSupply = parseFloat(document.getElementById('totalSupply').value);
+                const fee = parseFloat(document.getElementById('fee').value);
+                const beneficiaryWallet = new PublicKey(document.getElementById('beneficiaryWallet').value);
+                const marketCap = parseFloat(document.getElementById('marketCap').value);
+                const liquidity = parseFloat(document.getElementById('liquidity').value);
+                const creatorPercentage = parseFloat(document.getElementById('creatorPercentage').value);
 
-            // Calculate fee amount
-            const feeAmount = totalSupply * (fee / 100);
-            console.log(`Fee Amount: ${feeAmount}`);
+                if (!name || !symbol || isNaN(totalSupply) || isNaN(fee) || !beneficiaryWallet || isNaN(marketCap) || isNaN(liquidity) || isNaN(creatorPercentage)) {
+                    alert('Please fill in all fields correctly.');
+                    return;
+                }
 
-            // Calculate creator's share
-            const creatorShare = totalSupply * (creatorPercentage / 100);
-            console.log(`Creator's Share: ${creatorShare}`);
+                const connection = new Connection(endpoint, 'confirmed');
+                const transaction = new Transaction();
 
-            // Mint 1% of the supply to your wallet as a fee
-            const yourFeeShare = totalSupply * 0.01;
-            console.log(`Your Fee Share: ${yourFeeShare}`);
-        });
+                // Simulate market cap and liquidity
+                console.log(`Simulated Market Cap: ${marketCap}`);
+                console.log(`Simulated Liquidity: ${liquidity}`);
+
+                // Calculate fee amount
+                const feeAmount = totalSupply * (fee / 100);
+                console.log(`Fee Amount: ${feeAmount}`);
+
+                // Calculate creator's share
+                const creatorShare = totalSupply * (creatorPercentage / 100);
+                console.log(`Creator's Share: ${creatorShare}`);
+
+                // Mint 1% of the supply to your wallet as a fee
+                const yourFeeShare = totalSupply * 0.01;
+                console.log(`Your Fee Share: ${yourFeeShare}`);
+
+                // Create token mint
+                const mint = await Token.createMint(
+                    connection,
+                    wallet,
+                    wallet.publicKey,
+                    wallet.publicKey,
+                    2,
+                    TOKEN_PROGRAM_ID
+                );
+
+                // Mint tokens to creator
+                const creatorTokenAccount = await Token.getOrCreateAssociatedAccountInfo(
+                    connection,
+                    wallet,
+                    mint,
+                    wallet.publicKey
+                );
+
+                await mint.mintTo(
+                    creatorTokenAccount.address,
+                    wallet.publicKey,
+                    [],
+                    totalSupply
+                );
+
+                // Transfer fee to beneficiary
+                const beneficiaryTokenAccount = await Token.getOrCreateAssociatedAccountInfo(
+                    connection,
+                    wallet,
+                    mint,
+                    beneficiaryWallet
+                );
+
+                await mint.transfer(
+                    connection,
+                    creatorTokenAccount.address,
+                    beneficiaryTokenAccount.address,
+                    wallet.publicKey,
+                    [],
+                    feeAmount
+                );
+
+                alert('Token created successfully!');
+            };
+
+            return (
+                <div>
+                    <WalletMultiButton />
+                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Token Name" />
+                    <input value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="Token Symbol" />
+                    <input value={totalSupply} onChange={(e) => setTotalSupply(e.target.value)} placeholder="Total Supply" />
+                    <input value={fee} onChange={(e) => setFee(e.target.value)} placeholder="Fee (in %)" />
+                    <input value={beneficiaryWallet} onChange={(e) => setBeneficiaryWallet(e.target.value)} placeholder="Beneficiary Wallet" />
+                    <input value={marketCap} onChange={(e) => setMarketCap(e.target.value)} placeholder="Market Cap" />
+                    <input value={liquidity} onChange={(e) => setLiquidity(e.target.value)} placeholder="Liquidity" />
+                    <input value={creatorPercentage} onChange={(e) => setCreatorPercentage(e.target.value)} placeholder="Creator's Percentage" />
+                    <button onClick={createToken}>Create Token</button>
+                </div>
+            );
+        };
+
+        const AppWithProvider = () => (
+            <ConnectionProvider endpoint={endpoint}>
+                <WalletProvider wallets={wallets}>
+                    <WalletModalProvider>
+                        <App />
+                    </WalletModalProvider>
+                </WalletProvider>
+            </ConnectionProvider>
+        );
+
+        ReactDOM.render(<AppWithProvider />, document.getElementById('root'));
     </script>
 </body>
 </html>
