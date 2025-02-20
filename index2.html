@@ -1,509 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaxx: The Unkillable Meme Coin</title>
-  <!-- Social Media Meta Tags -->
-  <meta property="og:title" content="Jaxx: The Unkillable Meme Coin">
-  <meta property="og:description" content="They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀">
-  <meta property="og:image" content="https://jaxx-crypto.vercel.app/jaxx-logo.jpg">
-  <meta property="og:url" content="https://yourwebsite.com">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jaxx: The Unkillable Meme Coin">
-  <meta name="twitter:description" content="They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀">
-  <meta name="twitter:image" content="https://jaxx-crypto.vercel.app/jaxx-logo.jpg">
-  <!-- Styles -->
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1a1a1a;
-      color: #fff;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Creator</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #000000, #1a1a1a);
+            overflow: hidden;
+        }
 
-    h1, h2, h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: bold;
-      margin: 0;
-      letter-spacing: 1.5px;
-    }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #000000, #1a1a1a);
+            animation: gradient 5s infinite;
+        }
 
-    a {
-      color: #00ff88;
-      text-decoration: none;
-    }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
 
-    /* Music Toggle Button */
-    #music-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
-      transition: background 0.3s ease, transform 0.3s ease;
-      z-index: 1000;
-    }
+        .container:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
 
-    #music-toggle:hover {
-      background: rgba(0, 0, 0, 1);
-      transform: scale(1.1);
-    }
+        .container input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
 
-    #music-toggle i {
-      font-size: 1.5rem;
-    }
+        .container input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
 
-    /* Header Section */
-    #header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: url('header-background.jpg') no-repeat center center/cover;
-      color: #fff;
-      text-align: center;
-      padding: 0 20px;
-    }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(0, 123, 255, 0.8);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    #header .logo {
-      width: 250px; /* 2.5 times larger */
-      height: 250px; /* 2.5 times larger */
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: float 3s ease-in-out infinite, fadeIn 1s ease-in forwards;
-    }
+        .container button:hover {
+            background: rgba(0, 123, 255, 1);
+        }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    #header h1 {
-      font-size: 4.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-    }
-
-    #header p {
-      font-size: 1.5rem;
-      margin: 10px 0;
-      font-style: italic;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
-    }
-
-    #header .cta-buttons {
-      margin-top: 30px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    #header .cta-buttons a {
-      background: linear-gradient(135deg, #00ff88, #00cc66);
-      color: #1a1a1a;
-      padding: 15px 30px;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
-    }
-
-    #header .cta-buttons a:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
-    }
-
-    /* Infinite Scrolling Gallery */
-    #gallery {
-      padding: 80px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    #gallery .image-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    #gallery .image-container.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #gallery .image-container img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-    }
-
-    #gallery .image-container .button-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      gap: 10px; /* Space between buttons */
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    #gallery .image-container:hover .button-container {
-      opacity: 1;
-    }
-
-    #gallery .image-container .button-container button {
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    #gallery .image-container .button-container button:hover {
-      background: rgba(0, 0, 0, 1);
-    }
-
-    /* Footer Section */
-    footer {
-      background: #000;
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer .social-icons {
-      margin-bottom: 10px;
-    }
-
-    footer .social-icons a {
-      margin: 0 10px;
-      font-size: 1.2rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      #header h1 {
-        font-size: 3rem;
-      }
-
-      #header p {
-        font-size: 1.2rem;
-      }
-
-      #header .cta-buttons a {
-        padding: 12px 24px;
-        font-size: 1rem;
-      }
-    }
-  </style>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        .wallet-button {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <!-- Music Toggle Button -->
-  <button id="music-toggle">
-    <i class="fas fa-music"></i>
-  </button>
-
-  <!-- Header Section -->
-  <section id="header">
-    <img src="jaxxlogo.png" alt="Jaxx Logo" class="logo">
-    <h1>$JAXX: The Unkillable Meme Coin</h1>
-    <p>"They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"</p>
-    <div class="cta-buttons">
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Join the Roach Revolution</a>
-      <a href="#" target="_blank">Buy $JAXX (Soon)</a>
+    <div class="background"></div>
+    <div class="container">
+        <div class="wallet-button">
+            <button id="walletButton">Connect Wallet</button>
+        </div>
+        <input type="text" id="name" placeholder="Token Name" />
+        <input type="text" id="symbol" placeholder="Token Symbol" />
+        <input type="text" id="metadataUri" placeholder="Metadata URI" />
+        <button id="createTokenButton">Create Token</button>
     </div>
-  </section>
 
-  <!-- Infinite Scrolling Gallery -->
-  <section id="gallery">
-    <!-- Images will be dynamically loaded here -->
-  </section>
+    <script>
+        const walletButton = document.getElementById('walletButton');
+        const createTokenButton = document.getElementById('createTokenButton');
 
-  <!-- Footer Section -->
-  <footer>
-    <div class="social-icons">
-      <a href="https://x.com/Jaxx_Coin?t=Pe3shFH0Qv57O1zGzNj0Bg&s=09" target="_blank">Twitter</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Telegram</a>
-      <a href="https://x.com/Jaxx_Coin?t=dlpB2MD2c1f_JXQv1xgO0w&s=09" target="_blank">Discord</a>
-    </div>
-    <p>"Surviving since 2025. Just like your grandma’s fruitcake. 🪳©"</p>
-  </footer>
-
-  <!-- Background Music -->
-  <audio id="background-music" loop>
-    <source src="background.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    // List of images (use absolute URLs or relative paths)
-    const images = [
-      '1739937904571.jpg',
-      '1739938055358.jpg',
-      '1739938139434.jpg',
-      '1739938656064.jpg',
-      '1739938695642.jpg',
-      '1739938744457.jpg',
-      '1739938790974.jpg',
-      '1739939230640.jpg',
-      '1739939272567.jpg',
-      '1739939313199.jpg',
-      '1739939351602.jpg',
-      '1739939387777.jpg',
-      '1739939424061.jpg',
-      '1739939461392.jpg',
-      '1739939497549.jpg',
-      '1739939533346.jpg',
-      '1739941290189.jpg',
-      '1739941330528.jpg',
-      '1739928239003.jpg',
-      '1739928833526.jpg',
-      '1739928886098.jpg',
-      '1739929109699.jpg',
-      '1739929243865.jpg',
-      '1739937145171.jpg',
-      '1739937159039.jpg',
-      '1739937223212.jpg',
-      '1739937266983.jpg',
-      '1739937468294.jpg',
-      '1739937514198.jpg',
-      '1739937554800.jpg',
-      '1739937625161.jpg',
-      '1739937634831.jpg',
-      '1739937723144.jpg',
-      '1739937762587.jpg',
-      '1739937799036.jpg',
-      '1739937862632.jpg',
-      '1739941373092.jpg',
-      '1739941430206.jpg',
-      '1739941471886.jpg',
-      '1739941537465.jpg',
-      '1739941573548.jpg',
-      '1739941623700.jpg',
-      '1739941924953.jpg',
-      '1739942033532.jpg',
-      '1739942091292.jpg',
-      '1739942157767.jpg',
-      '1739942197248.jpg',
-      '1739942248991.jpg',
-      '1739942332556.jpg',
-      '1739971251356.jpg',
-      '1739971301261.jpg',
-      '1739971368533.jpg',
-      '1739971384306.jpg',
-      '1739971424573.jpg',
-      '1739971480965.jpg',
-      '1739971507267.jpg',
-      '1739971590653.jpg',
-      '1739971617711.jpg',
-      '1739971643455.jpg',
-      '1739971691036.jpg',
-      '1739971716998.jpg',
-      '1739974390495.jpg',
-      '1739974436167.jpg',
-      '1739974462352.jpg',
-      '1739974811801.jpg',
-      '1739974844209.jpg',
-      '1739974876737.jpg',
-      '1739975019981.jpg',
-      '1739975048876.jpg',
-      '1739975086801.jpg',
-      '1739976079091.jpg',
-      '1739976320288.jpg',
-      '1739976415473.jpg',
-      '1739976494383.jpg',
-      '1739976542379.jpg',
-      '1739976585368.jpg',
-      '1739976639035.jpg',
-      '1739976710750.jpg',
-      '1739976761393.jpg',
-      '1739976815202.jpg',
-      '1739976859293.jpg',
-      '1739976903457.jpg',
-      '1739976955634.jpg',
-      '1739977005851.jpg',
-      '1739977055184.jpg',
-      '1739983051172.jpg',
-      '1739983088342.jpg',
-      '1739983129870.jpg',
-      '1739983171403.jpg',
-      '1739983208965.jpg',
-      '1739983247070.jpg',
-      '1739983284852.jpg',
-      '1739983323603.jpg',
-      '1739983363374.jpg',
-      '1739983399866.jpg',
-      '1739983435547.jpg',
-      '1739983493390.jpg',
-      '1739983530243.jpg',
-      '1739983570388.jpg',
-      '1739983619207.jpg',
-      'about-jaxx.jpg',
-      'header-background.jpg',
-      'jaxx-logo.jpg',
-    ];
-
-    // Infinite Scrolling Gallery Script
-    const gallery = document.getElementById('gallery');
-    let index = 0;
-
-    function loadImages() {
-      for (let i = 0; i < 6; i++) { // Load 6 images at a time
-        if (index >= images.length) return;
-
-        const imageContainer = document.createElement('div');
-        imageContainer.classList.add('image-container');
-
-        const img = document.createElement('img');
-        img.src = images[index];
-        img.alt = `Jaxx Image ${index + 1}`;
-
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('button-container');
-
-        const shareButton = document.createElement('button');
-        shareButton.textContent = 'Share';
-        shareButton.onclick = () => shareImage(); // Share function
-
-        const downloadButton = document.createElement('button');
-        downloadButton.textContent = 'Download';
-        downloadButton.onclick = () => downloadImage(images[index]); // Download function
-
-        const viewButton = document.createElement('button');
-        viewButton.textContent = 'View';
-        viewButton.onclick = () => viewImage(images[index]); // View function
-
-        buttonContainer.appendChild(shareButton);
-        buttonContainer.appendChild(downloadButton);
-        buttonContainer.appendChild(viewButton);
-        imageContainer.appendChild(img);
-        imageContainer.appendChild(buttonContainer);
-        gallery.appendChild(imageContainer);
-
-        index++;
-      }
-
-      // Trigger fade-in animation for newly loaded images
-      setTimeout(() => {
-        const containers = document.querySelectorAll('#gallery .image-container');
-        containers.forEach(container => {
-          if (container.getBoundingClientRect().top < window.innerHeight) {
-            container.classList.add('visible');
-          }
+        walletButton.addEventListener('click', () => {
+            // Wallet connection logic here
+            alert('Wallet connection logic needs to be implemented.');
         });
-      }, 100);
-    }
 
-    // Share Website Link Function
-    function shareImage() {
-      const message = `Jaxx: The Unkillable Meme Coin - "They tried to kill me. They failed. Now I’m here to meme your portfolio into oblivion. 🪳🚀"`;
-      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`;
-      window.open(shareUrl, '_blank');
-    }
+        createTokenButton.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const symbol = document.getElementById('symbol').value;
+            const metadataUri = document.getElementById('metadataUri').value;
 
-    // Download Image Function
-    function downloadImage(imageUrl) {
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = `jaxx-meme-${Date.now()}.jpg`; // Set a unique filename
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+            if (!name || !symbol || !metadataUri) {
+                alert('Please fill in all fields.');
+                return;
+            }
 
-    // View Image Function
-    function viewImage(imageUrl) {
-      const img = document.createElement('img');
-      img.src = imageUrl;
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '100vh';
-      img.style.position = 'fixed';
-      img.style.top = '50%';
-      img.style.left = '50%';
-      img.style.transform = 'translate(-50%, -50%)';
-      img.style.zIndex = '1000';
-      img.style.cursor = 'pointer';
-      img.onclick = () => document.body.removeChild(img);
-      document.body.appendChild(img);
-    }
-
-    // Music Toggle Functionality
-    const musicToggle = document.getElementById('music-toggle');
-    const backgroundMusic = document.getElementById('background-music');
-    let isPlaying = false;
-
-    musicToggle.addEventListener('click', () => {
-      if (isPlaying) {
-        backgroundMusic.pause();
-        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-      } else {
-        backgroundMusic.play();
-        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-      }
-      isPlaying = !isPlaying;
-    });
-
-    // Load initial set of images
-    loadImages();
-
-    // Infinite Scroll Event Listener
-    window.addEventListener('scroll', () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-        loadImages();
-      }
-    });
-
-    // Fade-in images on scroll
-    window.addEventListener('scroll', () => {
-      const containers = document.querySelectorAll('#gallery .image-container');
-      containers.forEach(container => {
-        if (container.getBoundingClientRect().top < window.innerHeight) {
-          container.classList.add('visible');
-        }
-      });
-    });
-  </script>
+            // Token creation logic here
+            alert('Token creation logic needs to be implemented.');
+        });
+    </script>
 </body>
 </html>
