@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token Creator</title>
-    <style>
-        /* Your CSS here */
-    </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="container" id="root"></div>
+    <div id="root"></div>
+
+    <!-- Load React and ReactDOM -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Load Solana Web3.js -->
     <script src="https://unpkg.com/@solana/web3.js@latest/dist/solana.min.js"></script>
+
+    <!-- Load Solana Wallet Adapter -->
     <script src="https://unpkg.com/@solana/wallet-adapter-base@latest/dist/index.min.js"></script>
     <script src="https://unpkg.com/@solana/wallet-adapter-react@latest/dist/index.min.js"></script>
     <script src="https://unpkg.com/@solana/wallet-adapter-react-ui@latest/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@solana/wallet-adapter-wallets@latest/dist/index.min.js"></script>
+
     <script>
         const { Connection, PublicKey, Transaction, SystemProgram } = solanaWeb3;
         const { WalletAdapterNetwork } = WalletAdapterBase;
@@ -27,50 +31,14 @@
         const endpoint = WalletAdapterNetwork.Devnet;
         const wallets = [getPhantomWallet()];
 
-        const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
-
         const App = () => {
             const wallet = useWallet();
-            const [name, setName] = React.useState('');
-            const [symbol, setSymbol] = React.useState('');
-            const [totalSupply, setTotalSupply] = React.useState('');
-            const [fee, setFee] = React.useState('');
-            const [beneficiaryWallet, setBeneficiaryWallet] = React.useState('');
-            const [marketCap, setMarketCap] = React.useState('');
-            const [liquidity, setLiquidity] = React.useState('');
-            const [creatorPercentage, setCreatorPercentage] = React.useState('');
-
-            const createToken = async () => {
-                try {
-                    if (!wallet.publicKey) {
-                        alert('Please connect your wallet');
-                        return;
-                    }
-
-                    const connection = new Connection(endpoint, 'confirmed');
-                    const transaction = new Transaction();
-
-                    // Your token creation logic here
-
-                    alert('Token created successfully!');
-                } catch (error) {
-                    console.error('Error creating token:', error);
-                    alert('Error creating token. See console for details.');
-                }
-            };
 
             return (
                 <div>
+                    <h1>Token Creator</h1>
                     <WalletMultiButton />
-                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Token Name" />
-                    <input value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="Token Symbol" />
-                    <input value={totalSupply} onChange={(e) => setTotalSupply(e.target.value)} placeholder="Total Supply" />
-                    <input value={fee} onChange={(e) => setFee(e.target.value)} placeholder="Fee (in %)" />
-                    <input value={beneficiaryWallet} onChange={(e) => setBeneficiaryWallet(e.target.value)} placeholder="Beneficiary Wallet" />
-                    <input value={marketCap} onChange={(e) => setMarketCap(e.target.value)} placeholder="Market Cap" />
-                    <input value={liquidity} onChange={(e) => setLiquidity(e.target.value)} placeholder="Liquidity" />
-                    <input value={creatorPercentage} onChange={(e) => setCreatorPercentage(e.target.value)} placeholder="Creator's Percentage" />
-                    <button onClick={createToken}>Create Token</button>
+                    <p>Connect your wallet to get started.</p>
                 </div>
             );
         };
